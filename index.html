@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CHID Design Studio | Portfolio</title>
+    <style>
+        /* 기본 리셋 및 폰트 설정 */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: 'Helvetica Neue', 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #fcfcfc;
+        }
+        
+        /* 헤더 및 내비게이션 */
+        header {
+            background-color: #111;
+            color: #fff;
+            text-align: center;
+            padding: 4rem 1rem;
+        }
+        header h1 {
+            font-size: 2.5rem;
+            letter-spacing: 2px;
+            margin-bottom: 0.5rem;
+        }
+        header p {
+            color: #aaa;
+            font-size: 1.1rem;
+        }
+        nav {
+            display: flex;
+            justify-content: center;
+            background-color: #222;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 1.5rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        nav a:hover {
+            color: #007bff;
+        }
+
+        /* 공통 섹션 스타일 */
+        section {
+            padding: 5rem 10%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        h2.section-title {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+        h2.section-title::after {
+            content: '';
+            display: block;
+            width: 50px;
+            height: 3px;
+            background: #111;
+            margin: 1rem auto 0;
+        }
+
+        /* About 섹션 */
+        .about-content {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+            color: #555;
+        }
+
+        /* Work (프로젝트) 섹션 */
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        .project-card {
+            background: #fff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease;
+        }
+        .project-card:hover {
+            transform: translateY(-5px);
+        }
+        .project-image {
+            width: 100%;
+            height: 200px;
+            background-color: #eaeaea; /* 이미지 썸네일 대체 영역 */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #999;
+            font-size: 0.9rem;
+        }
+        .project-info {
+            padding: 1.5rem;
+        }
+        .project-info h3 {
+            margin-bottom: 0.5rem;
+            font-size: 1.25rem;
+        }
+        .project-info p {
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        /* Contact 섹션 */
+        .contact {
+            background-color: #f4f4f4;
+            text-align: center;
+        }
+        .contact p {
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        /* 푸터 */
+        footer {
+            background-color: #111;
+            color: #777;
+            text-align: center;
+            padding: 2rem 0;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+
+    <header id="home">
+        <h1>CHID Design Studio</h1>
+        <p>Industrial & Product Design Portfolio</p>
+    </header>
+
+    <nav>
+        <a href="#about">About</a>
+        <a href="#work">Work</a>
+        <a href="#contact">Contact</a>
+    </nav>
+
+    <section id="about">
+        <h2 class="section-title">About</h2>
+        <div class="about-content">
+            <p>산업 디자인 및 제품 디자인을 바탕으로 실용적이고 혁신적인 솔루션을 탐구합니다. Rhino 3D, Blender, KeyShot 등의 툴을 활용하여 기획부터 모델링, 시각화 렌더링까지 완성도 높은 결과물을 만들어냅니다.</p>
+        </div>
+    </section>
+
+    <section id="work">
+        <h2 class="section-title">Selected Works</h2>
+        <div class="project-grid">
+            
+            <div class="project-card">
+                <div class="project-image">Thumbnail Image</div>
+                <div class="project-info">
+                    <h3>Project KUNST</h3>
+                    <p>AR 도슨트 디바이스 기획 및 폼팩터 디자인</p>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-image">Thumbnail Image</div>
+                <div class="project-info">
+                    <h3>Project Seesaw</h3>
+                    <p>자이로 센서 기반 웨어러블 디바이스 제품 렌더링 및 시각화</p>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-image">Thumbnail Image</div>
+                <div class="project-info">
+                    <h3>Project COREAMED</h3>
+                    <p>의료용 석션 라이너 디스펜서 백 구조 리디자인</p>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-image">Thumbnail Image</div>
+                <div class="project-info">
+                    <h3>Project Cosmo-es</h3>
+                    <p>보행 압력을 전기에너지로 변환하는 친환경 신발 컨셉 디자인</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="contact" class="contact">
+        <h2 class="section-title">Contact</h2>
+        <p>프로젝트 문의나 협업 제안은 언제든 환영합니다.</p>
+        <p><strong>Email:</strong> contact@chid.kr</p>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 CHID Design Studio. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>
