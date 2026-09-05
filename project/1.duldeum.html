@@ -25,20 +25,25 @@
 
         .detail-layout { display: grid; grid-template-columns: 200px 1fr; align-items: start; padding-bottom: 150px;}
         .detail-title { font-size: 10pt; font-weight: 500; position: sticky; top: 40px; margin: 0; }
-        .detail-content { display: flex; flex-direction: column; align-items: flex-end; gap: 100px; }
+        
+        /* 전체 컨텐츠 간격을 기본 10px로 잡고, 글이 있을 때만 여백을 넓게 줌 */
+        .detail-content { display: flex; flex-direction: column; align-items: flex-end; gap: 10px; }
+        
         .detail-img-box { width: calc(75vw - 91.25px); max-width: 1250px; background-color: #dfdfdf; aspect-ratio: 16 / 9; overflow: hidden; }
         .detail-img-box img { width: 100%; height: 100%; object-fit: cover; display: block; }
         
-        /* 텍스트 박스 스타일 */
-        .detail-desc { width: calc(75vw - 91.25px); max-width: 1250px; font-size: 10pt; line-height: 1.6; color: var(--text-black); margin: 0; }
-        .detail-desc .kr { margin-top: 20px; display: block; }
-        .credits { margin-top: 40px; }
+        /* 본문 텍스트 스타일 (#232323 통일) */
+        .detail-desc { width: calc(75vw - 91.25px); max-width: 1250px; font-size: 10pt; line-height: 1.6; color: var(--text-black); margin: 40px 0; }
+        .detail-desc .kr { margin-top: 20px; display: block; color: var(--text-black); }
+        
+        /* 맨 하단 크레딧 스타일 (연한 회색, 왼쪽 정렬) */
+        .credits { width: calc(75vw - 91.25px); max-width: 1250px; font-size: 10pt; line-height: 1.6; color: var(--text-gray); text-align: left; margin: 60px 0 0 0; }
         .credits span { display: block; }
 
         @media (max-width: 1024px) {
             .detail-layout { grid-template-columns: 1fr; gap: 30px; }
             .detail-title { position: static; }
-            .detail-img-box, .detail-desc { width: 100%; }
+            .detail-img-box, .detail-desc, .credits { width: 100%; }
             body { padding: 30px; }
         }
         @media (max-width: 600px) {
@@ -76,7 +81,7 @@
                     <span class="kr">부드럽게 오르내리는 물결 형태에서 영감을 받았습니다. 높낮이의 차이를 지닌 구조는 물건이 쉽게 떨어지지 않도록 하며, ‘툭’ 내려두어도 자연스럽게 자리 잡고 어둠 속에서도 쉽게 인식되도록 설계되었습니다.</span>
                 </div>
 
-                <!-- 3번 사진 (설명 없음) -->
+                <!-- 3번 사진 (간격 10px) -->
                 <div class="detail-img-box"><img src="../image/1.duldeum/3.webp" alt="Duldeum 3"></div>
 
                 <!-- 4번 사진 및 설명 -->
@@ -100,17 +105,17 @@
                     <span class="kr">물결 무늬에서 영감을 받은 책꽂이 입니다. 물결 사이사이에 책, 아이패드 같은 슬림한 제품을 밀듯이 끼워넣을 수 있습니다.</span>
                 </div>
 
-                <!-- 7, 8, 9, 10번 사진 (설명 없음) -->
+                <!-- 7, 8, 9, 10번 사진 (간격 10px) -->
                 <div class="detail-img-box"><img src="../image/1.duldeum/7.webp" alt="Duldeum 7"></div>
                 <div class="detail-img-box"><img src="../image/1.duldeum/8.webp" alt="Duldeum 8"></div>
                 <div class="detail-img-box"><img src="../image/1.duldeum/9.webp" alt="Duldeum 9"></div>
                 <div class="detail-img-box"><img src="../image/1.duldeum/10.webp" alt="Duldeum 10"></div>
                 
-                <!-- 맨 하단 크레딧 정보 -->
-                <div class="detail-desc credits">
+                <!-- 맨 하단 크레딧 정보 (연한 회색, 왼쪽 정렬) -->
+                <div class="credits">
                     <span>Designed by Jo Haon, Jin Hakyung, Song Miju, Jo Chambi, Choi Gayoun</span>
                     <span style="margin-top: 10px;">Studioi × HiPD Winter Project, Hongik Industrail Design Student Group</span>
-                    <span style="margin-top: 10px; color: var(--text-gray);">December 2025 – February 2026</span>
+                    <span style="margin-top: 10px;">December 2025 – February 2026</span>
                 </div>
             </div>
         </div>
