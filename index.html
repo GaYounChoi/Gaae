@@ -16,9 +16,9 @@
             --text-gray: #b3b3b3;
         }
 
-        /* 데스크톱 환경에서 기본 마우스 커서 완벽 숨기기 */
+        /* 데스크톱 마우스 커서 숨기기 */
         @media (pointer: fine) {
-            body, a, button, .grid-item, .nav-link, #info-section, #info-section *, .detail-back {
+            body, a, button, .grid-item, .nav-link, #info-section, #info-section * {
                 cursor: none !important;
             }
         }
@@ -27,27 +27,20 @@
             background-color: var(--bg-color);
             margin: 0;
             padding: 40px 60px;
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
             color: var(--text-black);
             -webkit-font-smoothing: antialiased;
             letter-spacing: -0.5pt;
         }
 
-        /* 백그라운드 스크롤 완벽 고정을 위한 클래스 */
-        body.lock-scroll {
-            position: fixed;
-            width: 100%;
-            left: 0;
-            top: 0;
-        }
+        /* 인포메이션 창 띄웠을 때 뒤 배경 스크롤 막기 */
+        body.lock-scroll { overflow: hidden; }
 
         /* --- 커스텀 커서 스타일 --- */
         .custom-cursor {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 15px;  
-            height: 15px;
+            top: 0; left: 0;
+            width: 15px; height: 15px;
             background-color: #000000;
             border-radius: 50%;
             pointer-events: none;
@@ -55,247 +48,97 @@
             transition: width 0.3s ease, height 0.3s ease, opacity 0.3s ease;
             z-index: 9999;
         }
-
         body.cursor-hover .custom-cursor {
-            width: 18px;
-            height: 18px;
-            opacity: 0.7;
+            width: 18px; height: 18px; opacity: 0.7;
         }
 
-        /* --- 상단 헤더 영역 --- */
+        /* --- 상단 헤더 --- */
         header {
-            display: flex;
-            justify-content: space-between;
-            align-items: baseline;
-            margin-bottom: 150px; 
-            position: relative;
-            z-index: 100;
+            display: flex; justify-content: space-between; align-items: baseline;
+            margin-bottom: 150px; position: relative; z-index: 100;
         }
-
-        .logo {
-            font-size: 14pt; 
-            letter-spacing: -1pt; 
-            font-weight: 400;
-            margin: 0;
-            cursor: pointer;
-        }
-
-        nav {
-            display: flex;
-            gap: 30px;
-        }
-
-        .nav-link {
-            font-size: 12px;
-            font-weight: 400;
-            cursor: pointer;
-            transition: color 0.3s ease;
-        }
-
+        .logo { font-size: 14pt; letter-spacing: -1pt; font-weight: 400; margin: 0; cursor: pointer; }
+        nav { display: flex; gap: 30px; }
+        .nav-link { font-size: 12px; font-weight: 400; cursor: pointer; transition: color 0.3s ease; }
         .nav-link.active { color: var(--text-black); }
         .nav-link.inactive { color: var(--text-gray); }
 
-        /* --- Project 메인 그리드 영역 --- */
-        #project-section {
-            width: 100%;
-            display: block;
-        }
-
+        /* --- 메인 그리드 썸네일 --- */
         .grid-container {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 5px; 
+            display: grid; grid-template-columns: repeat(4, 1fr); gap: 5px; 
         }
-
         .grid-item {
-            background-color: #dfdfdf;
-            width: 100%;
-            aspect-ratio: 4 / 5; /* 썸네일 비율 4:5 적용 */
-            transition: opacity 0.3s ease;
-            cursor: pointer;
+            background-color: #dfdfdf; width: 100%; aspect-ratio: 4 / 5;
+            transition: opacity 0.3s ease; display: block; overflow: hidden; text-decoration: none;
         }
+        .grid-item img { width: 100%; height: 100%; object-fit: cover; display: block; }
+        .grid-item:hover { opacity: 0.8; }
 
-        .grid-item:hover {
-            opacity: 0.8;
-        }
-
-        /* --- 프로젝트 상세 페이지 --- */
-        #detail-section {
-            display: none; 
-            width: 100%;
-            position: relative;
-            padding-bottom: 150px;
-        }
-
-        #detail-section.show {
-            display: block;
-        }
-
-        .detail-layout {
-            display: grid;
-            grid-template-columns: 200px 1fr; 
-            align-items: start;
-        }
-
-        .detail-title {
-            font-size: 10pt;
-            font-weight: 500;
-            position: sticky;
-            top: 40px;
-            margin: 0;
-            cursor: pointer;
-        }
-
-        .detail-content {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-end; /* 컨텐츠 전체를 우측 정렬 */
-            gap: 100px; 
-        }
-
-        .detail-img-box {
-            width: calc(75vw - 91.25px); /* 메인 그리드 썸네일 3개 + 사이 gap 2개와 동일한 폭 */
-            max-width: 1250px;
-            background-color: #dfdfdf;
-            aspect-ratio: 16 / 9; /* 상세 이미지 비율 16:9 적용 */
-        }
-
-        .detail-desc {
-            width: calc(75vw - 91.25px); /* 이미지와 동일한 너비를 주어 좌측 정렬선을 깔끔하게 일치시킴 */
-            max-width: 1250px;
-            font-size: 10pt;
-            line-height: 1.6;
-            color: var(--text-black);
-            margin: 0;
-        }
-
-        /* --- Information 플로팅 영역 --- */
+        /* --- Information 영역 --- */
         #info-section {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100vh;
-            background-color: var(--overlay-color);
-            z-index: 50;
-            padding: 230px 60px 60px 60px;
-            box-sizing: border-box;
-            overflow-y: auto; 
-            cursor: none !important;
-            
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.4s ease;
+            position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
+            background-color: var(--overlay-color); z-index: 50;
+            padding: 230px 60px 60px 60px; box-sizing: border-box; overflow-y: auto; 
+            opacity: 0; pointer-events: none; transition: opacity 0.4s ease;
         }
+        #info-section.show { opacity: 1; pointer-events: auto; }
+        .info-container { display: flex; flex-direction: column; gap: 60px; width: 100%; }
+        .info-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 5px; }
+        .info-category, .info-item p { font-size: 10pt !important; line-height: 1.5; }
+        .info-category { grid-column: 1; font-weight: 400; }
+        .info-details { grid-column: 2 / span 3; display: flex; flex-direction: column; gap: 24px; }
+        .info-item p { margin: 0; }
+        .info-item .date { color: #a0a0a0; }
 
-        #info-section.show {
-            opacity: 1;
-            pointer-events: auto;
-        }
-
-        .info-container {
-            display: flex;
-            flex-direction: column;
-            gap: 60px;
-            width: 100%;
-        }
-
-        .info-row {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 5px; 
-        }
-
-        #info-section .info-category,
-        #info-section .info-item p {
-            font-size: 10pt !important;
-            line-height: 1.5;
-        }
-
-        .info-category {
-            grid-column: 1;
-            font-weight: 400;
-        }
-
-        .info-details {
-            grid-column: 2 / span 3;
-            display: flex;
-            flex-direction: column;
-            gap: 24px;
-        }
-
-        .info-item p {
-            margin: 0;
-        }
-
-        .info-item .date {
-            color: #a0a0a0;
-        }
-
-        /* --- 반응형 설정 --- */
+        /* --- 반응형 (모바일 등) --- */
         @media (max-width: 1024px) {
             .grid-container, .info-row { grid-template-columns: repeat(2, 1fr); }
             .info-details { grid-column: 2; }
-            .detail-layout { grid-template-columns: 1fr; gap: 30px; }
-            .detail-title { position: static; }
-            .detail-img-box, .detail-desc { width: 100%; } /* 모바일에서는 너비 100% 채우기 */
-            body { padding: 30px; }
-            #info-section { padding: 180px 30px 40px 30px; }
+            body { padding: 30px; } #info-section { padding: 180px 30px 40px 30px; }
         }
-
         @media (max-width: 600px) {
-            header {
-                flex-direction: column;
-                gap: 20px;
-                align-items: flex-start;
-                margin-bottom: 80px;
-            }
+            header { flex-direction: column; gap: 20px; align-items: flex-start; margin-bottom: 80px; }
             .grid-container, .info-row { grid-template-columns: 1fr; }
             .info-category { grid-column: 1; margin-bottom: 16px; font-weight: 600;}
             .info-details { grid-column: 1; gap: 20px;}
-            #info-section { padding: 160px 30px 40px 30px; }
         }
     </style>
 </head>
 <body>
-
     <div class="custom-cursor" id="cursor"></div>
 
     <header>
-        <h1 class="logo" onclick="switchTab('project')">Ga Youn Choi</h1>
+        <!-- 로고 누르면 인포메이션 창 닫힘 -->
+        <h1 class="logo" onclick="closeInfo()">Ga Youn Choi</h1>
         <nav>
-            <span id="nav-project" class="nav-link active" onclick="switchTab('project')">Project</span>
-            <span id="nav-info" class="nav-link inactive" onclick="switchTab('info')">Information</span>
+            <span id="nav-project" class="nav-link active" onclick="closeInfo()">Project</span>
+            <span id="nav-info" class="nav-link inactive" onclick="openInfo()">Information</span>
         </nav>
     </header>
 
-    <main id="project-section">
+    <main>
+        <!-- 프로젝트 썸네일 그리드 -->
         <div class="grid-container">
-            <div class="grid-item" onclick="openDetail('AVA')"></div>
-            <div class="grid-item" onclick="openDetail('GYEOL')"></div>
-            <div class="grid-item" onclick="openDetail('Vision AR')"></div>
-            <div class="grid-item" onclick="openDetail('Connect')"></div>
-            <div class="grid-item" onclick="openDetail('Project 05')"></div>
-            <div class="grid-item" onclick="openDetail('Project 06')"></div>
-            <div class="grid-item" onclick="openDetail('Project 07')"></div>
-            <div class="grid-item" onclick="openDetail('Project 08')"></div>
+            
+            <!-- 1. Duldeum 프로젝트 썸네일 -->
+            <a href="project/duldeum.html" class="grid-item">
+                <img src="thumnail/duldeum.png" alt="Duldeum Thumbnail">
+            </a>
+            
+            <!-- 2. AVA 프로젝트 썸네일 (추후에 ava.html 만들면 연결됨) -->
+            <a href="project/ava.html" class="grid-item"></a>
+            
+            <!-- 3~8. 나머지 빈 프로젝트들 -->
+            <a href="#" class="grid-item"></a>
+            <a href="#" class="grid-item"></a>
+            <a href="#" class="grid-item"></a>
+            <a href="#" class="grid-item"></a>
+            <a href="#" class="grid-item"></a>
+            <a href="#" class="grid-item"></a>
         </div>
     </main>
 
-    <section id="detail-section">
-        <div class="detail-layout">
-            <h2 class="detail-title" id="detail-project-name" onclick="switchTab('project')">AVA</h2>
-            <div class="detail-content">
-                <div class="detail-img-box"></div>
-                <p class="detail-desc">
-                    홍익대학교와 국민대학교 AI 소모임 연합 프로젝트로, AR 글라스와 AI를 활용한 패션 브랜딩 프로젝트를 진행했습니다.<br>
-                    일상에서 발견한 패션을 아바타에 적용하고 다양한 스타일을 비교하며, 자신만의 취향을 탐색할 수 있는 경험을 제안합니다.
-                </p>
-                <div class="detail-img-box"></div>
-            </div>
-        </div>
-    </section>
-
+    <!-- Information 탭 누르면 뜨는 영역 -->
     <aside id="info-section">
         <div class="info-container">
             
@@ -373,105 +216,57 @@
                     </div>
                 </div>
             </div>
-
+            
         </div>
     </aside>
 
     <script>
-        let scrollPosition = 0;
-
-        // 초기에 메인 페이지 히스토리 상태 설정
-        if (!history.state) {
-            history.replaceState({ page: 'main' }, '', '');
+        // Information 창 열기 기능
+        function openInfo() {
+            document.getElementById('nav-info').className = 'nav-link active';
+            document.getElementById('nav-project').className = 'nav-link inactive';
+            document.body.classList.add('lock-scroll');
+            document.getElementById('info-section').classList.add('show');
         }
 
-        function switchTab(tabName) {
-            const navProject = document.getElementById('nav-project');
-            const navInfo = document.getElementById('nav-info');
-            const projectSection = document.getElementById('project-section');
-            const detailSection = document.getElementById('detail-section');
-            const infoSection = document.getElementById('info-section');
-
-            if (tabName === 'project') {
-                navProject.className = 'nav-link active';
-                navInfo.className = 'nav-link inactive';
-                infoSection.classList.remove('show');
-                detailSection.classList.remove('show');
-                projectSection.style.display = 'block';
-                
-                document.body.classList.remove('lock-scroll');
-                window.scrollTo(0, scrollPosition);
-            } else if (tabName === 'info') {
-                navInfo.className = 'nav-link active';
-                navProject.className = 'nav-link inactive';
-                
-                scrollPosition = window.scrollY;
-                document.body.style.top = `-${scrollPosition}px`;
-                document.body.classList.add('lock-scroll');
-                
-                infoSection.classList.add('show');
-            }
+        // Information 창 닫기 기능
+        function closeInfo() {
+            document.getElementById('nav-project').className = 'nav-link active';
+            document.getElementById('nav-info').className = 'nav-link inactive';
+            document.body.classList.remove('lock-scroll');
+            document.getElementById('info-section').classList.remove('show');
         }
 
-        // 개별 프로젝트 상세 페이지 오픈 함수
-        function openDetail(projectName) {
-            scrollPosition = window.scrollY;
-            document.getElementById('project-section').style.display = 'none';
-            document.getElementById('detail-section').classList.add('show');
-            document.getElementById('detail-project-name').innerText = projectName;
-            window.scrollTo(0, 0); 
-            
-            // 상세 페이지 진입 시 브라우저 히스토리 추가 (뒤로 가기 지원)
-            history.pushState({ page: 'detail' }, '', '#detail');
-        }
+        // 빈 화면 클릭해도 인포메이션 창 닫힘
+        document.getElementById('info-section').addEventListener('click', closeInfo);
 
-        // 브라우저 뒤로 가기 버튼 감지 시 메인(Project) 화면으로 복귀
-        window.addEventListener('popstate', (e) => {
-            switchTab('project');
-        });
-
-        // 플로팅 페이지 영역 내 여백 클릭 시 닫기
-        const infoSection = document.getElementById('info-section');
-        infoSection.addEventListener('click', function(e) {
-            switchTab('project');
-        });
-
-        // --- 부드러운 커스텀 커서 인터랙션 스크립트 ---
+        // 커스텀 커서 움직임 
         const cursor = document.getElementById('cursor');
+        let mouseX = 0, mouseY = 0, cursorX = 0, cursorY = 0;
         
-        let mouseX = 0;
-        let mouseY = 0;
-        let cursorX = 0;
-        let cursorY = 0;
-
-        window.addEventListener('mousemove', (e) => {
-            mouseX = e.clientX;
-            mouseY = e.clientY;
+        window.addEventListener('mousemove', (e) => { 
+            mouseX = e.clientX; 
+            mouseY = e.clientY; 
         });
-
+        
         function animateCursor() {
-            let distX = mouseX - cursorX;
-            let distY = mouseY - cursorY;
-
-            cursorX += distX * 0.2;
-            cursorY += distY * 0.2;
-
-            cursor.style.left = cursorX + 'px';
+            cursorX += (mouseX - cursorX) * 0.2; 
+            cursorY += (mouseY - cursorY) * 0.2;
+            cursor.style.left = cursorX + 'px'; 
             cursor.style.top = cursorY + 'px';
-
             requestAnimationFrame(animateCursor);
         }
         animateCursor();
-
-        // 호버 대상 갱신 반영을 위해 이벤트 위임
+        
+        // 클릭 가능한 요소 위에 마우스 올렸을 때 커서 커지기
         document.addEventListener('mouseover', (e) => {
-            if (e.target.matches('.nav-link, .grid-item, a, .logo, .detail-title')) {
+            if (e.target.closest('.nav-link, .grid-item, a, .logo')) {
                 document.body.classList.add('cursor-hover');
             }
         });
-
+        
         document.addEventListener('mouseout', (e) => {
-            if (e.target.matches('.nav-link, .grid-item, a, .logo, .detail-title')) {
+            if (e.target.closest('.nav-link, .grid-item, a, .logo')) {
                 document.body.classList.remove('cursor-hover');
             }
         });
