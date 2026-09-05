@@ -16,7 +16,6 @@
             --text-gray: #b3b3b3;
         }
 
-        /* 데스크톱 마우스 커서 숨기기 */
         @media (pointer: fine) {
             body, a, button, .grid-item, .nav-link, #info-section, #info-section * {
                 cursor: none !important;
@@ -33,24 +32,17 @@
             letter-spacing: -0.5pt;
         }
 
-        /* 인포메이션 창 띄웠을 때 뒤 배경 스크롤 막기 */
         body.lock-scroll { overflow: hidden; }
 
-        /* --- 커스텀 커서 스타일 --- */
+        /* --- 커스텀 커서 --- */
         .custom-cursor {
-            position: fixed;
-            top: 0; left: 0;
+            position: fixed; top: 0; left: 0;
             width: 15px; height: 15px;
-            background-color: #000000;
-            border-radius: 50%;
-            pointer-events: none;
-            transform: translate(-50%, -50%);
-            transition: width 0.3s ease, height 0.3s ease, opacity 0.3s ease;
-            z-index: 9999;
+            background-color: #000000; border-radius: 50%;
+            pointer-events: none; transform: translate(-50%, -50%);
+            transition: width 0.3s ease, height 0.3s ease, opacity 0.3s ease; z-index: 9999;
         }
-        body.cursor-hover .custom-cursor {
-            width: 18px; height: 18px; opacity: 0.7;
-        }
+        body.cursor-hover .custom-cursor { width: 18px; height: 18px; opacity: 0.7; }
 
         /* --- 상단 헤더 --- */
         header {
@@ -90,7 +82,6 @@
         .info-item p { margin: 0; }
         .info-item .date { color: #a0a0a0; }
 
-        /* --- 반응형 (모바일 등) --- */
         @media (max-width: 1024px) {
             .grid-container, .info-row { grid-template-columns: repeat(2, 1fr); }
             .info-details { grid-column: 2; }
@@ -108,7 +99,6 @@
     <div class="custom-cursor" id="cursor"></div>
 
     <header>
-        <!-- 로고 누르면 인포메이션 창 닫힘 -->
         <h1 class="logo" onclick="closeInfo()">Ga Youn Choi</h1>
         <nav>
             <span id="nav-project" class="nav-link active" onclick="closeInfo()">Project</span>
@@ -117,31 +107,22 @@
     </header>
 
     <main>
-        <!-- 프로젝트 썸네일 그리드 -->
         <div class="grid-container">
             
-            <!-- 1. Duldeum 프로젝트 썸네일 -->
+            <!-- 1. Duldeum 프로젝트 썸네일 (이것만 남겼습니다!) -->
             <a href="project/duldeum.html" class="grid-item">
                 <img src="thumnail/duldeum.png" alt="Duldeum Thumbnail">
             </a>
             
-            <!-- 2. AVA 프로젝트 썸네일 (추후에 ava.html 만들면 연결됨) -->
-            <a href="project/ava.html" class="grid-item"></a>
+            <!-- 나중에 새 프로젝트(예: AVA)를 추가하고 싶으시면, 아래처럼 코드를 한 줄씩 추가하시면 됩니다. -->
+            <!-- <a href="project/ava.html" class="grid-item"><img src="thumnail/ava.png" alt="AVA Thumbnail"></a> -->
             
-            <!-- 3~8. 나머지 빈 프로젝트들 -->
-            <a href="#" class="grid-item"></a>
-            <a href="#" class="grid-item"></a>
-            <a href="#" class="grid-item"></a>
-            <a href="#" class="grid-item"></a>
-            <a href="#" class="grid-item"></a>
-            <a href="#" class="grid-item"></a>
         </div>
     </main>
 
-    <!-- Information 탭 누르면 뜨는 영역 -->
+    <!-- Information 탭 -->
     <aside id="info-section">
         <div class="info-container">
-            
             <div class="info-row">
                 <div class="info-category">Profile</div>
                 <div class="info-details">
@@ -221,7 +202,7 @@
     </aside>
 
     <script>
-        // Information 창 열기 기능
+        // Information 창 열기/닫기
         function openInfo() {
             document.getElementById('nav-info').className = 'nav-link active';
             document.getElementById('nav-project').className = 'nav-link inactive';
@@ -229,7 +210,6 @@
             document.getElementById('info-section').classList.add('show');
         }
 
-        // Information 창 닫기 기능
         function closeInfo() {
             document.getElementById('nav-project').className = 'nav-link active';
             document.getElementById('nav-info').className = 'nav-link inactive';
@@ -237,7 +217,6 @@
             document.getElementById('info-section').classList.remove('show');
         }
 
-        // 빈 화면 클릭해도 인포메이션 창 닫힘
         document.getElementById('info-section').addEventListener('click', closeInfo);
 
         // 커스텀 커서 움직임 
@@ -258,7 +237,6 @@
         }
         animateCursor();
         
-        // 클릭 가능한 요소 위에 마우스 올렸을 때 커서 커지기
         document.addEventListener('mouseover', (e) => {
             if (e.target.closest('.nav-link, .grid-item, a, .logo')) {
                 document.body.classList.add('cursor-hover');
