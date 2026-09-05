@@ -8,7 +8,6 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
     <style>
-        /* 기본 설정 및 커서 (index와 동일) */
         :root { --bg-color: #FCFCFC; --text-black: #232323; --text-gray: #b3b3b3; }
         @media (pointer: fine) { body, a, button, .nav-link, .detail-title { cursor: none !important; } }
         body { background-color: var(--bg-color); margin: 0; padding: 40px 60px; font-family: 'Inter', sans-serif; color: var(--text-black); -webkit-font-smoothing: antialiased; letter-spacing: -0.5pt; }
@@ -17,7 +16,6 @@
         .custom-cursor { position: fixed; top: 0; left: 0; width: 15px; height: 15px; background-color: #000000; border-radius: 50%; pointer-events: none; transform: translate(-50%, -50%); transition: width 0.3s ease, height 0.3s ease, opacity 0.3s ease; z-index: 9999; }
         body.cursor-hover .custom-cursor { width: 18px; height: 18px; opacity: 0.7; }
 
-        /* 상단 헤더 */
         header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 150px; position: relative; z-index: 100; }
         .logo { font-size: 14pt; letter-spacing: -1pt; font-weight: 400; margin: 0; }
         nav { display: flex; gap: 30px; }
@@ -25,7 +23,6 @@
         .nav-link.inactive { color: var(--text-gray); }
         .nav-link.inactive:hover { color: var(--text-black); }
 
-        /* 상세 페이지 레이아웃 */
         .detail-layout { display: grid; grid-template-columns: 200px 1fr; align-items: start; padding-bottom: 150px;}
         .detail-title { font-size: 10pt; font-weight: 500; position: sticky; top: 40px; margin: 0; }
         .detail-content { display: flex; flex-direction: column; align-items: flex-end; gap: 100px; }
@@ -48,7 +45,6 @@
     <div class="custom-cursor" id="cursor"></div>
 
     <header>
-        <!-- ../ 를 붙여서 상위 폴더의 index.html로 이동 -->
         <h1 class="logo"><a href="../index.html">Ga Youn Choi</a></h1>
         <nav>
             <a href="../index.html" class="nav-link inactive">Project</a>
@@ -61,7 +57,6 @@
             <h2 class="detail-title"><a href="../index.html">Duldeum</a></h2>
             
             <div class="detail-content">
-                <!-- ../ 를 붙여서 상위 폴더의 image 폴더를 찾음 -->
                 <div class="detail-img-box"><img src="../image/1.duldeum/1.webp" alt="Duldeum 1"></div>
                 <div class="detail-img-box"><img src="../image/1.duldeum/2.webp" alt="Duldeum 2"></div>
                 <div class="detail-img-box"><img src="../image/1.duldeum/3.webp" alt="Duldeum 3"></div>
@@ -82,7 +77,6 @@
     </main>
 
     <script>
-        // 커스텀 커서 스크립트
         const cursor = document.getElementById('cursor');
         let mouseX = 0, mouseY = 0, cursorX = 0, cursorY = 0;
         window.addEventListener('mousemove', (e) => { mouseX = e.clientX; mouseY = e.clientY; });
