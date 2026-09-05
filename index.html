@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ga Youn Choi - Portfolio</title>
-    <!-- Inter 폰트 불러오기 -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -111,7 +110,7 @@
         .grid-item {
             background-color: #dfdfdf;
             width: 100%;
-            aspect-ratio: 3 / 4;
+            aspect-ratio: 4 / 5; /* 썸네일 비율 4:5 적용 */
             transition: opacity 0.3s ease;
             cursor: pointer;
         }
@@ -120,9 +119,9 @@
             opacity: 0.8;
         }
 
-        /* --- 프로젝트 상세 페이지 (첨부 이미지 형식 반영) --- */
+        /* --- 프로젝트 상세 페이지 --- */
         #detail-section {
-            display: none; /* 기본 숨김 */
+            display: none; 
             width: 100%;
             position: relative;
             padding-bottom: 150px;
@@ -134,12 +133,12 @@
 
         .detail-layout {
             display: grid;
-            grid-template-columns: 200px 1fr; /* 왼쪽 타이틀 고정, 오른쪽 콘텐츠 영역 */
+            grid-template-columns: 200px 1fr; 
             align-items: start;
         }
 
         .detail-title {
-            font-size: 12pt;
+            font-size: 10pt;
             font-weight: 500;
             position: sticky;
             top: 40px;
@@ -150,20 +149,23 @@
         .detail-content {
             display: flex;
             flex-direction: column;
-            gap: 40px; /* 이미지와 텍스트 간격 */
+            align-items: flex-end; /* 컨텐츠 전체를 우측 정렬 */
+            gap: 60px; 
         }
 
         .detail-img-box {
-            width: 100%;
+            width: 70%; 
+            max-width: 800px;
             background-color: #dfdfdf;
-            aspect-ratio: 16 / 10; /* 큼직한 가로형 이미지 비율 */
+            aspect-ratio: 16 / 9; /* 상세 이미지 비율 16:9 적용 */
         }
 
         .detail-desc {
-            font-size: 10pt;
+            width: 70%; /* 이미지와 동일한 너비를 주어 좌측 정렬선을 깔끔하게 일치시킴 */
+            max-width: 800px;
+            font-size: 8pt;
             line-height: 1.6;
             color: var(--text-black);
-            max-width: 650px;
             margin: 0;
         }
 
@@ -236,6 +238,7 @@
             .info-details { grid-column: 2; }
             .detail-layout { grid-template-columns: 1fr; gap: 30px; }
             .detail-title { position: static; }
+            .detail-img-box, .detail-desc { width: 100%; } /* 모바일에서는 너비 100% 채우기 */
             body { padding: 30px; }
             #info-section { padding: 180px 30px 40px 30px; }
         }
@@ -256,7 +259,6 @@
 </head>
 <body>
 
-    <!-- 커스텀 커서 요소 -->
     <div class="custom-cursor" id="cursor"></div>
 
     <header>
@@ -267,10 +269,8 @@
         </nav>
     </header>
 
-    <!-- Project 메인 그리드 페이지 -->
     <main id="project-section">
         <div class="grid-container">
-            <!-- 각 그리드 아이템 클릭 시 상세 페이지(AVA 예시)로 진입 -->
             <div class="grid-item" onclick="openDetail('AVA')"></div>
             <div class="grid-item" onclick="openDetail('GYEOL')"></div>
             <div class="grid-item" onclick="openDetail('Vision AR')"></div>
@@ -282,7 +282,6 @@
         </div>
     </main>
 
-    <!-- 개별 프로젝트 상세 페이지 (이미지 형식 반영) -->
     <section id="detail-section">
         <div class="detail-layout">
             <h2 class="detail-title" id="detail-project-name" onclick="switchTab('project')">AVA</h2>
@@ -297,7 +296,6 @@
         </div>
     </section>
 
-    <!-- Information 플로팅 페이지 -->
     <aside id="info-section">
         <div class="info-container">
             
@@ -382,6 +380,11 @@
     <script>
         let scrollPosition = 0;
 
+        // 초기에 메인 페이지 히스토리 상태 설정
+        if (!history.state) {
+            history.replaceState({ page: 'main' }, '', '');
+        }
+
         function switchTab(tabName) {
             const navProject = document.getElementById('nav-project');
             const navInfo = document.getElementById('nav-info');
@@ -416,8 +419,16 @@
             document.getElementById('project-section').style.display = 'none';
             document.getElementById('detail-section').classList.add('show');
             document.getElementById('detail-project-name').innerText = projectName;
-            window.scrollTo(0, 0); // 상세 페이지 진입 시 상단으로 스크롤 이동
+            window.scrollTo(0, 0); 
+            
+            // 상세 페이지 진입 시 브라우저 히스토리 추가 (뒤로 가기 지원)
+            history.pushState({ page: 'detail' }, '', '#detail');
         }
+
+        // 브라우저 뒤로 가기 버튼 감지 시 메인(Project) 화면으로 복귀
+        window.addEventListener('popstate', (e) => {
+            switchTab('project');
+        });
 
         // 플로팅 페이지 영역 내 여백 클릭 시 닫기
         const infoSection = document.getElementById('info-section');
@@ -452,7 +463,7 @@
         }
         animateCursor();
 
-        // 호버 대상 갱신 반영을 위해 이벤트 위임 또는 동적 요소 대응
+        // 호버 대상 갱신 반영을 위해 이벤트 위임
         document.addEventListener('mouseover', (e) => {
             if (e.target.matches('.nav-link, .grid-item, a, .logo, .detail-title')) {
                 document.body.classList.add('cursor-hover');
