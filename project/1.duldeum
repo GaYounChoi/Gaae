@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Duldeum - Ga Youn Choi</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        /* 기본 설정 및 커서 (index와 동일) */
+        :root { --bg-color: #FCFCFC; --text-black: #232323; --text-gray: #b3b3b3; }
+        @media (pointer: fine) { body, a, button, .nav-link, .detail-title { cursor: none !important; } }
+        body { background-color: var(--bg-color); margin: 0; padding: 40px 60px; font-family: 'Inter', sans-serif; color: var(--text-black); -webkit-font-smoothing: antialiased; letter-spacing: -0.5pt; }
+        a { color: inherit; text-decoration: none; }
+        
+        .custom-cursor { position: fixed; top: 0; left: 0; width: 15px; height: 15px; background-color: #000000; border-radius: 50%; pointer-events: none; transform: translate(-50%, -50%); transition: width 0.3s ease, height 0.3s ease, opacity 0.3s ease; z-index: 9999; }
+        body.cursor-hover .custom-cursor { width: 18px; height: 18px; opacity: 0.7; }
+
+        /* 상단 헤더 */
+        header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 150px; position: relative; z-index: 100; }
+        .logo { font-size: 14pt; letter-spacing: -1pt; font-weight: 400; margin: 0; }
+        nav { display: flex; gap: 30px; }
+        .nav-link { font-size: 12px; font-weight: 400; transition: color 0.3s ease; }
+        .nav-link.inactive { color: var(--text-gray); }
+        .nav-link.inactive:hover { color: var(--text-black); }
+
+        /* 상세 페이지 레이아웃 */
+        .detail-layout { display: grid; grid-template-columns: 200px 1fr; align-items: start; padding-bottom: 150px;}
+        .detail-title { font-size: 10pt; font-weight: 500; position: sticky; top: 40px; margin: 0; }
+        .detail-content { display: flex; flex-direction: column; align-items: flex-end; gap: 100px; }
+        .detail-img-box { width: calc(75vw - 91.25px); max-width: 1250px; background-color: #dfdfdf; aspect-ratio: 16 / 9; overflow: hidden; }
+        .detail-img-box img { width: 100%; height: 100%; object-fit: cover; display: block; }
+        .detail-desc { width: calc(75vw - 91.25px); max-width: 1250px; font-size: 10pt; line-height: 1.6; color: var(--text-black); margin: 0; }
+
+        @media (max-width: 1024px) {
+            .detail-layout { grid-template-columns: 1fr; gap: 30px; }
+            .detail-title { position: static; }
+            .detail-img-box, .detail-desc { width: 100%; }
+            body { padding: 30px; }
+        }
+        @media (max-width: 600px) {
+            header { flex-direction: column; gap: 20px; align-items: flex-start; margin-bottom: 80px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="custom-cursor" id="cursor"></div>
+
+    <header>
+        <!-- ../ 를 붙여서 상위 폴더의 index.html로 이동 -->
+        <h1 class="logo"><a href="../index.html">Ga Youn Choi</a></h1>
+        <nav>
+            <a href="../index.html" class="nav-link inactive">Project</a>
+            <a href="../index.html" class="nav-link inactive">Information</a>
+        </nav>
+    </header>
+
+    <main>
+        <div class="detail-layout">
+            <h2 class="detail-title"><a href="../index.html">Duldeum</a></h2>
+            
+            <div class="detail-content">
+                <!-- ../ 를 붙여서 상위 폴더의 image 폴더를 찾음 -->
+                <div class="detail-img-box"><img src="../image/1.duldeum/1.webp" alt="Duldeum 1"></div>
+                <div class="detail-img-box"><img src="../image/1.duldeum/2.webp" alt="Duldeum 2"></div>
+                <div class="detail-img-box"><img src="../image/1.duldeum/3.webp" alt="Duldeum 3"></div>
+                <div class="detail-img-box"><img src="../image/1.duldeum/4.webp" alt="Duldeum 4"></div>
+                <div class="detail-img-box"><img src="../image/1.duldeum/5.webp" alt="Duldeum 5"></div>
+                <div class="detail-img-box"><img src="../image/1.duldeum/6.webp" alt="Duldeum 6"></div>
+                <div class="detail-img-box"><img src="../image/1.duldeum/7.webp" alt="Duldeum 7"></div>
+                <div class="detail-img-box"><img src="../image/1.duldeum/8.webp" alt="Duldeum 8"></div>
+                <div class="detail-img-box"><img src="../image/1.duldeum/9.webp" alt="Duldeum 9"></div>
+                <div class="detail-img-box"><img src="../image/1.duldeum/10.webp" alt="Duldeum 10"></div>
+                
+                <p class="detail-desc">
+                    둘둥(Duldeum) 프로젝트에 대한 설명 텍스트를 여기에 작성하세요.<br>
+                    줄바꿈은 &lt;br&gt; 태그를 사용하시면 깔끔하게 정돈됩니다.
+                </p>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // 커스텀 커서 스크립트
+        const cursor = document.getElementById('cursor');
+        let mouseX = 0, mouseY = 0, cursorX = 0, cursorY = 0;
+        window.addEventListener('mousemove', (e) => { mouseX = e.clientX; mouseY = e.clientY; });
+        function animateCursor() {
+            cursorX += (mouseX - cursorX) * 0.2; cursorY += (mouseY - cursorY) * 0.2;
+            cursor.style.left = cursorX + 'px'; cursor.style.top = cursorY + 'px';
+            requestAnimationFrame(animateCursor);
+        }
+        animateCursor();
+        document.addEventListener('mouseover', (e) => {
+            if (e.target.matches('a, .logo')) document.body.classList.add('cursor-hover');
+        });
+        document.addEventListener('mouseout', (e) => {
+            if (e.target.matches('a, .logo')) document.body.classList.remove('cursor-hover');
+        });
+    </script>
+</body>
+</html>
