@@ -8,7 +8,6 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
     <style>
-        /* --- 기본 설정 --- */
         :root {
             --bg-color: #FCFCFC;
             --overlay-color: rgba(252, 252, 252, 0.85);
@@ -34,7 +33,6 @@
 
         body.lock-scroll { overflow: hidden; }
 
-        /* --- 커스텀 커서 --- */
         .custom-cursor {
             position: fixed; top: 0; left: 0;
             width: 15px; height: 15px;
@@ -44,7 +42,6 @@
         }
         body.cursor-hover .custom-cursor { width: 18px; height: 18px; opacity: 0.7; }
 
-        /* --- 상단 헤더 --- */
         header {
             display: flex; justify-content: space-between; align-items: baseline;
             margin-bottom: 150px; position: relative; z-index: 100;
@@ -55,7 +52,6 @@
         .nav-link.active { color: var(--text-black); }
         .nav-link.inactive { color: var(--text-gray); }
 
-        /* --- 메인 그리드 썸네일 --- */
         .grid-container {
             display: grid; grid-template-columns: repeat(4, 1fr); gap: 5px; 
         }
@@ -66,7 +62,6 @@
         .grid-item img { width: 100%; height: 100%; object-fit: cover; display: block; }
         .grid-item:hover { opacity: 0.8; }
 
-        /* --- Information 영역 --- */
         #info-section {
             position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
             background-color: var(--overlay-color); z-index: 50;
@@ -108,19 +103,13 @@
 
     <main>
         <div class="grid-container">
-            
-            <!-- 1. Duldeum 프로젝트 썸네일 (이것만 남겼습니다!) -->
+            <!-- 1.duldeum.html로 정확히 연결 -->
             <a href="project/1.duldeum.html" class="grid-item">
                 <img src="thumnail/duldeum.png" alt="Duldeum Thumbnail">
             </a>
-            
-            <!-- 나중에 새 프로젝트(예: AVA)를 추가하고 싶으시면, 아래처럼 코드를 한 줄씩 추가하시면 됩니다. -->
-            <!-- <a href="project/ava.html" class="grid-item"><img src="thumnail/ava.png" alt="AVA Thumbnail"></a> -->
-            
         </div>
     </main>
 
-    <!-- Information 탭 -->
     <aside id="info-section">
         <div class="info-container">
             <div class="info-row">
@@ -133,7 +122,6 @@
                     </div>
                 </div>
             </div>
-
             <div class="info-row">
                 <div class="info-category">Education</div>
                 <div class="info-details">
@@ -143,110 +131,62 @@
                     </div>
                 </div>
             </div>
-
             <div class="info-row">
                 <div class="info-category">Experience</div>
                 <div class="info-details">
-                    <div class="info-item">
-                        <p>Vice President, Industrial Design Product Design Club, Hongik University</p>
-                        <p class="date">2026</p>
-                    </div>
-                    <div class="info-item">
-                        <p>Undergraduate Researcher, HIDE LAB, Department of Design Engineering, Hongik University</p>
-                        <p class="date">2026</p>
-                    </div>
-                    <div class="info-item">
-                        <p>Studio I × HiPD Joint Winter Project</p>
-                        <p class="date">2026</p>
-                    </div>
-                    <div class="info-item">
-                        <p>Torriden Industry-Academia Collaboration Project</p>
-                        <p class="date">2025</p>
-                    </div>
+                    <div class="info-item"><p>Vice President, Industrial Design Product Design Club, Hongik University</p><p class="date">2026</p></div>
+                    <div class="info-item"><p>Undergraduate Researcher, HIDE LAB, Department of Design Engineering, Hongik University</p><p class="date">2026</p></div>
+                    <div class="info-item"><p>Studio I × HiPD Joint Winter Project</p><p class="date">2026</p></div>
+                    <div class="info-item"><p>Torriden Industry-Academia Collaboration Project</p><p class="date">2025</p></div>
                 </div>
             </div>
-
             <div class="info-row">
                 <div class="info-category">Exhibition</div>
                 <div class="info-details">
-                    <div class="info-item">
-                        <p>Hongik Industrial Design Summer Show</p>
-                        <p class="date">2026</p>
-                    </div>
-                    <div class="info-item">
-                        <p>Hongik × Kookmin AI Collective Exhibition &lt;Nod to Nod&gt;</p>
-                        <p class="date">2026</p>
-                    </div>
-                    <div class="info-item">
-                        <p>Hongik University × Korea National University of Arts Joint Exhibition &lt;Platypus&gt;</p>
-                        <p class="date">2025</p>
-                    </div>
-                    <div class="info-item">
-                        <p>Hongik Industrial Design Summer Show</p>
-                        <p class="date">2024</p>
-                    </div>
+                    <div class="info-item"><p>Hongik Industrial Design Summer Show</p><p class="date">2026</p></div>
+                    <div class="info-item"><p>Hongik × Kookmin AI Collective Exhibition &lt;Nod to Nod&gt;</p><p class="date">2026</p></div>
+                    <div class="info-item"><p>Hongik University × Korea National University of Arts Joint Exhibition &lt;Platypus&gt;</p><p class="date">2025</p></div>
+                    <div class="info-item"><p>Hongik Industrial Design Summer Show</p><p class="date">2024</p></div>
                 </div>
             </div>
-
             <div class="info-row">
                 <div class="info-category">Award</div>
                 <div class="info-details">
-                    <div class="info-item">
-                        <p>Award Title Placeholder</p>
-                        <p class="date">2026</p>
-                    </div>
+                    <div class="info-item"><p>Award Title Placeholder</p><p class="date">2026</p></div>
                 </div>
             </div>
-            
         </div>
     </aside>
 
     <script>
-        // Information 창 열기/닫기
         function openInfo() {
             document.getElementById('nav-info').className = 'nav-link active';
             document.getElementById('nav-project').className = 'nav-link inactive';
             document.body.classList.add('lock-scroll');
             document.getElementById('info-section').classList.add('show');
         }
-
         function closeInfo() {
             document.getElementById('nav-project').className = 'nav-link active';
             document.getElementById('nav-info').className = 'nav-link inactive';
             document.body.classList.remove('lock-scroll');
             document.getElementById('info-section').classList.remove('show');
         }
-
         document.getElementById('info-section').addEventListener('click', closeInfo);
 
-        // 커스텀 커서 움직임 
         const cursor = document.getElementById('cursor');
         let mouseX = 0, mouseY = 0, cursorX = 0, cursorY = 0;
-        
-        window.addEventListener('mousemove', (e) => { 
-            mouseX = e.clientX; 
-            mouseY = e.clientY; 
-        });
-        
+        window.addEventListener('mousemove', (e) => { mouseX = e.clientX; mouseY = e.clientY; });
         function animateCursor() {
-            cursorX += (mouseX - cursorX) * 0.2; 
-            cursorY += (mouseY - cursorY) * 0.2;
-            cursor.style.left = cursorX + 'px'; 
-            cursor.style.top = cursorY + 'px';
+            cursorX += (mouseX - cursorX) * 0.2; cursorY += (mouseY - cursorY) * 0.2;
+            cursor.style.left = cursorX + 'px'; cursor.style.top = cursorY + 'px';
             requestAnimationFrame(animateCursor);
         }
         animateCursor();
-        
         document.addEventListener('mouseover', (e) => {
-            if (e.target.closest('.nav-link, .grid-item, a, .logo')) {
-                document.body.classList.add('cursor-hover');
-            }
+            if (e.target.closest('.nav-link, .grid-item, a, .logo')) document.body.classList.add('cursor-hover');
         });
-        
         document.addEventListener('mouseout', (e) => {
-            if (e.target.closest('.nav-link, .grid-item, a, .logo')) {
-                document.body.classList.remove('cursor-hover');
-            }
+            if (e.target.closest('.nav-link, .grid-item, a, .logo')) document.body.classList.remove('cursor-hover');
         });
     </script>
 </body>
