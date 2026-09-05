@@ -3,213 +3,467 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CHID Design Studio | Portfolio</title>
+    <title>Ga Youn Choi - Portfolio</title>
+    <!-- Inter 폰트 불러오기 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
     <style>
-        /* 기본 리셋 및 폰트 설정 */
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
+        /* --- 기본 설정 --- */
+        :root {
+            --bg-color: #FCFCFC;
+            --overlay-color: rgba(252, 252, 252, 0.85);
+            --text-black: #232323;
+            --text-gray: #b3b3b3;
         }
+
+        /* 데스크톱 환경에서 기본 마우스 커서 완벽 숨기기 */
+        @media (pointer: fine) {
+            body, a, button, .grid-item, .nav-link, #info-section, #info-section *, .detail-back {
+                cursor: none !important;
+            }
+        }
+
         body {
-            font-family: 'Helvetica Neue', 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background-color: #fcfcfc;
+            background-color: var(--bg-color);
+            margin: 0;
+            padding: 40px 60px;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            color: var(--text-black);
+            -webkit-font-smoothing: antialiased;
+            letter-spacing: -0.5pt;
         }
-        
-        /* 헤더 및 내비게이션 */
-        header {
-            background-color: #111;
-            color: #fff;
-            text-align: center;
-            padding: 4rem 1rem;
-        }
-        header h1 {
-            font-size: 2.5rem;
-            letter-spacing: 2px;
-            margin-bottom: 0.5rem;
-        }
-        header p {
-            color: #aaa;
-            font-size: 1.1rem;
-        }
-        nav {
-            display: flex;
-            justify-content: center;
-            background-color: #222;
-            padding: 1rem 0;
-            position: sticky;
+
+        /* 백그라운드 스크롤 완벽 고정을 위한 클래스 */
+        body.lock-scroll {
+            position: fixed;
+            width: 100%;
+            left: 0;
             top: 0;
+        }
+
+        /* --- 커스텀 커서 스타일 --- */
+        .custom-cursor {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 10px;  
+            height: 10px;
+            background-color: #000000;
+            border-radius: 50%;
+            pointer-events: none;
+            transform: translate(-50%, -50%);
+            transition: width 0.3s ease, height 0.3s ease, opacity 0.3s ease;
+            z-index: 9999;
+        }
+
+        body.cursor-hover .custom-cursor {
+            width: 18px;
+            height: 18px;
+            opacity: 0.7;
+        }
+
+        /* --- 상단 헤더 영역 --- */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 150px; 
+            position: relative;
             z-index: 100;
         }
-        nav a {
-            color: #fff;
-            text-decoration: none;
-            margin: 0 1.5rem;
-            font-weight: 500;
+
+        .logo {
+            font-size: 14pt; 
+            letter-spacing: -1pt; 
+            font-weight: 400;
+            margin: 0;
+            cursor: pointer;
+        }
+
+        nav {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-link {
+            font-size: 12px;
+            font-weight: 400;
+            cursor: pointer;
             transition: color 0.3s ease;
         }
-        nav a:hover {
-            color: #007bff;
-        }
 
-        /* 공통 섹션 스타일 */
-        section {
-            padding: 5rem 10%;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        h2.section-title {
-            text-align: center;
-            font-size: 2rem;
-            margin-bottom: 3rem;
-            position: relative;
-        }
-        h2.section-title::after {
-            content: '';
-            display: block;
-            width: 50px;
-            height: 3px;
-            background: #111;
-            margin: 1rem auto 0;
-        }
+        .nav-link.active { color: var(--text-black); }
+        .nav-link.inactive { color: var(--text-gray); }
 
-        /* About 섹션 */
-        .about-content {
-            text-align: center;
-            max-width: 800px;
-            margin: 0 auto;
-            font-size: 1.1rem;
-            color: #555;
-        }
-
-        /* Work (프로젝트) 섹션 */
-        .project-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-        .project-card {
-            background: #fff;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-            transition: transform 0.3s ease;
-        }
-        .project-card:hover {
-            transform: translateY(-5px);
-        }
-        .project-image {
+        /* --- Project 메인 그리드 영역 --- */
+        #project-section {
             width: 100%;
-            height: 200px;
-            background-color: #eaeaea; /* 이미지 썸네일 대체 영역 */
+            display: block;
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 5px; 
+        }
+
+        .grid-item {
+            background-color: #dfdfdf;
+            width: 100%;
+            aspect-ratio: 3 / 4;
+            transition: opacity 0.3s ease;
+            cursor: pointer;
+        }
+
+        .grid-item:hover {
+            opacity: 0.8;
+        }
+
+        /* --- 프로젝트 상세 페이지 (첨부 이미지 형식 반영) --- */
+        #detail-section {
+            display: none; /* 기본 숨김 */
+            width: 100%;
+            position: relative;
+            padding-bottom: 150px;
+        }
+
+        #detail-section.show {
+            display: block;
+        }
+
+        .detail-layout {
+            display: grid;
+            grid-template-columns: 200px 1fr; /* 왼쪽 타이틀 고정, 오른쪽 콘텐츠 영역 */
+            align-items: start;
+        }
+
+        .detail-title {
+            font-size: 12pt;
+            font-weight: 500;
+            position: sticky;
+            top: 40px;
+            margin: 0;
+            cursor: pointer;
+        }
+
+        .detail-content {
             display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #999;
-            font-size: 0.9rem;
-        }
-        .project-info {
-            padding: 1.5rem;
-        }
-        .project-info h3 {
-            margin-bottom: 0.5rem;
-            font-size: 1.25rem;
-        }
-        .project-info p {
-            color: #666;
-            font-size: 0.95rem;
+            flex-direction: column;
+            gap: 40px; /* 이미지와 텍스트 간격 */
         }
 
-        /* Contact 섹션 */
-        .contact {
-            background-color: #f4f4f4;
-            text-align: center;
-        }
-        .contact p {
-            margin-bottom: 0.5rem;
-            font-size: 1.1rem;
+        .detail-img-box {
+            width: 100%;
+            background-color: #dfdfdf;
+            aspect-ratio: 16 / 10; /* 큼직한 가로형 이미지 비율 */
         }
 
-        /* 푸터 */
-        footer {
-            background-color: #111;
-            color: #777;
-            text-align: center;
-            padding: 2rem 0;
-            font-size: 0.9rem;
+        .detail-desc {
+            font-size: 10pt;
+            line-height: 1.6;
+            color: var(--text-black);
+            max-width: 650px;
+            margin: 0;
+        }
+
+        /* --- Information 플로팅 영역 --- */
+        #info-section {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background-color: var(--overlay-color);
+            z-index: 50;
+            padding: 230px 60px 60px 60px;
+            box-sizing: border-box;
+            overflow-y: auto; 
+            cursor: none !important;
+            
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s ease;
+        }
+
+        #info-section.show {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .info-container {
+            display: flex;
+            flex-direction: column;
+            gap: 60px;
+            width: 100%;
+        }
+
+        .info-row {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 5px; 
+        }
+
+        #info-section .info-category,
+        #info-section .info-item p {
+            font-size: 10pt !important;
+            line-height: 1.5;
+        }
+
+        .info-category {
+            grid-column: 1;
+            font-weight: 400;
+        }
+
+        .info-details {
+            grid-column: 2 / span 3;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .info-item p {
+            margin: 0;
+        }
+
+        .info-item .date {
+            color: #a0a0a0;
+        }
+
+        /* --- 반응형 설정 --- */
+        @media (max-width: 1024px) {
+            .grid-container, .info-row { grid-template-columns: repeat(2, 1fr); }
+            .info-details { grid-column: 2; }
+            .detail-layout { grid-template-columns: 1fr; gap: 30px; }
+            .detail-title { position: static; }
+            body { padding: 30px; }
+            #info-section { padding: 180px 30px 40px 30px; }
+        }
+
+        @media (max-width: 600px) {
+            header {
+                flex-direction: column;
+                gap: 20px;
+                align-items: flex-start;
+                margin-bottom: 80px;
+            }
+            .grid-container, .info-row { grid-template-columns: 1fr; }
+            .info-category { grid-column: 1; margin-bottom: 16px; font-weight: 600;}
+            .info-details { grid-column: 1; gap: 20px;}
+            #info-section { padding: 160px 30px 40px 30px; }
         }
     </style>
 </head>
 <body>
 
-    <header id="home">
-        <h1>CHID Design Studio</h1>
-        <p>Industrial & Product Design Portfolio</p>
+    <!-- 커스텀 커서 요소 -->
+    <div class="custom-cursor" id="cursor"></div>
+
+    <header>
+        <h1 class="logo" onclick="switchTab('project')">Ga Youn Choi</h1>
+        <nav>
+            <span id="nav-project" class="nav-link active" onclick="switchTab('project')">Project</span>
+            <span id="nav-info" class="nav-link inactive" onclick="switchTab('info')">Information</span>
+        </nav>
     </header>
 
-    <nav>
-        <a href="#about">About</a>
-        <a href="#work">Work</a>
-        <a href="#contact">Contact</a>
-    </nav>
+    <!-- Project 메인 그리드 페이지 -->
+    <main id="project-section">
+        <div class="grid-container">
+            <!-- 각 그리드 아이템 클릭 시 상세 페이지(AVA 예시)로 진입 -->
+            <div class="grid-item" onclick="openDetail('AVA')"></div>
+            <div class="grid-item" onclick="openDetail('GYEOL')"></div>
+            <div class="grid-item" onclick="openDetail('Vision AR')"></div>
+            <div class="grid-item" onclick="openDetail('Connect')"></div>
+            <div class="grid-item" onclick="openDetail('Project 05')"></div>
+            <div class="grid-item" onclick="openDetail('Project 06')"></div>
+            <div class="grid-item" onclick="openDetail('Project 07')"></div>
+            <div class="grid-item" onclick="openDetail('Project 08')"></div>
+        </div>
+    </main>
 
-    <section id="about">
-        <h2 class="section-title">About</h2>
-        <div class="about-content">
-            <p>산업 디자인 및 제품 디자인을 바탕으로 실용적이고 혁신적인 솔루션을 탐구합니다. Rhino 3D, Blender, KeyShot 등의 툴을 활용하여 기획부터 모델링, 시각화 렌더링까지 완성도 높은 결과물을 만들어냅니다.</p>
+    <!-- 개별 프로젝트 상세 페이지 (이미지 형식 반영) -->
+    <section id="detail-section">
+        <div class="detail-layout">
+            <h2 class="detail-title" id="detail-project-name" onclick="switchTab('project')">AVA</h2>
+            <div class="detail-content">
+                <div class="detail-img-box"></div>
+                <p class="detail-desc">
+                    홍익대학교와 국민대학교 AI 소모임 연합 프로젝트로, AR 글라스와 AI를 활용한 패션 브랜딩 프로젝트를 진행했습니다.<br>
+                    일상에서 발견한 패션을 아바타에 적용하고 다양한 스타일을 비교하며, 자신만의 취향을 탐색할 수 있는 경험을 제안합니다.
+                </p>
+                <div class="detail-img-box"></div>
+            </div>
         </div>
     </section>
 
-    <section id="work">
-        <h2 class="section-title">Selected Works</h2>
-        <div class="project-grid">
+    <!-- Information 플로팅 페이지 -->
+    <aside id="info-section">
+        <div class="info-container">
             
-            <div class="project-card">
-                <div class="project-image">Thumbnail Image</div>
-                <div class="project-info">
-                    <h3>Project KUNST</h3>
-                    <p>AR 도슨트 디바이스 기획 및 폼팩터 디자인</p>
+            <div class="info-row">
+                <div class="info-category">Profile</div>
+                <div class="info-details">
+                    <div class="info-item">
+                        <p>Ga Youn Choi</p>
+                        <p>rkdbs0507@g.hongik.ac.kr</p>
+                        <p>@0.315g</p>
+                    </div>
                 </div>
             </div>
 
-            <div class="project-card">
-                <div class="project-image">Thumbnail Image</div>
-                <div class="project-info">
-                    <h3>Project Seesaw</h3>
-                    <p>자이로 센서 기반 웨어러블 디바이스 제품 렌더링 및 시각화</p>
+            <div class="info-row">
+                <div class="info-category">Education</div>
+                <div class="info-details">
+                    <div class="info-item">
+                        <p>Hongik University, Industrial Design</p>
+                        <p class="date">2024 - present</p>
+                    </div>
                 </div>
             </div>
 
-            <div class="project-card">
-                <div class="project-image">Thumbnail Image</div>
-                <div class="project-info">
-                    <h3>Project COREAMED</h3>
-                    <p>의료용 석션 라이너 디스펜서 백 구조 리디자인</p>
+            <div class="info-row">
+                <div class="info-category">Experience</div>
+                <div class="info-details">
+                    <div class="info-item">
+                        <p>Vice President, Industrial Design Product Design Club, Hongik University</p>
+                        <p class="date">2026</p>
+                    </div>
+                    <div class="info-item">
+                        <p>Undergraduate Researcher, HIDE LAB, Department of Design Engineering, Hongik University</p>
+                        <p class="date">2026</p>
+                    </div>
+                    <div class="info-item">
+                        <p>Studio I × HiPD Joint Winter Project</p>
+                        <p class="date">2026</p>
+                    </div>
+                    <div class="info-item">
+                        <p>Torriden Industry-Academia Collaboration Project</p>
+                        <p class="date">2025</p>
+                    </div>
                 </div>
             </div>
 
-            <div class="project-card">
-                <div class="project-image">Thumbnail Image</div>
-                <div class="project-info">
-                    <h3>Project Cosmo-es</h3>
-                    <p>보행 압력을 전기에너지로 변환하는 친환경 신발 컨셉 디자인</p>
+            <div class="info-row">
+                <div class="info-category">Exhibition</div>
+                <div class="info-details">
+                    <div class="info-item">
+                        <p>Hongik Industrial Design Summer Show</p>
+                        <p class="date">2026</p>
+                    </div>
+                    <div class="info-item">
+                        <p>Hongik × Kookmin AI Collective Exhibition &lt;Nod to Nod&gt;</p>
+                        <p class="date">2026</p>
+                    </div>
+                    <div class="info-item">
+                        <p>Hongik University × Korea National University of Arts Joint Exhibition &lt;Platypus&gt;</p>
+                        <p class="date">2025</p>
+                    </div>
+                    <div class="info-item">
+                        <p>Hongik Industrial Design Summer Show</p>
+                        <p class="date">2024</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="info-row">
+                <div class="info-category">Award</div>
+                <div class="info-details">
+                    <div class="info-item">
+                        <p>Award Title Placeholder</p>
+                        <p class="date">2026</p>
+                    </div>
                 </div>
             </div>
 
         </div>
-    </section>
+    </aside>
 
-    <section id="contact" class="contact">
-        <h2 class="section-title">Contact</h2>
-        <p>프로젝트 문의나 협업 제안은 언제든 환영합니다.</p>
-        <p><strong>Email:</strong> contact@chid.kr</p>
-    </section>
+    <script>
+        let scrollPosition = 0;
 
-    <footer>
-        <p>&copy; 2026 CHID Design Studio. All rights reserved.</p>
-    </footer>
+        function switchTab(tabName) {
+            const navProject = document.getElementById('nav-project');
+            const navInfo = document.getElementById('nav-info');
+            const projectSection = document.getElementById('project-section');
+            const detailSection = document.getElementById('detail-section');
+            const infoSection = document.getElementById('info-section');
 
+            if (tabName === 'project') {
+                navProject.className = 'nav-link active';
+                navInfo.className = 'nav-link inactive';
+                infoSection.classList.remove('show');
+                detailSection.classList.remove('show');
+                projectSection.style.display = 'block';
+                
+                document.body.classList.remove('lock-scroll');
+                window.scrollTo(0, scrollPosition);
+            } else if (tabName === 'info') {
+                navInfo.className = 'nav-link active';
+                navProject.className = 'nav-link inactive';
+                
+                scrollPosition = window.scrollY;
+                document.body.style.top = `-${scrollPosition}px`;
+                document.body.classList.add('lock-scroll');
+                
+                infoSection.classList.add('show');
+            }
+        }
+
+        // 개별 프로젝트 상세 페이지 오픈 함수
+        function openDetail(projectName) {
+            scrollPosition = window.scrollY;
+            document.getElementById('project-section').style.display = 'none';
+            document.getElementById('detail-section').classList.add('show');
+            document.getElementById('detail-project-name').innerText = projectName;
+            window.scrollTo(0, 0); // 상세 페이지 진입 시 상단으로 스크롤 이동
+        }
+
+        // 플로팅 페이지 영역 내 여백 클릭 시 닫기
+        const infoSection = document.getElementById('info-section');
+        infoSection.addEventListener('click', function(e) {
+            switchTab('project');
+        });
+
+        // --- 부드러운 커스텀 커서 인터랙션 스크립트 ---
+        const cursor = document.getElementById('cursor');
+        
+        let mouseX = 0;
+        let mouseY = 0;
+        let cursorX = 0;
+        let cursorY = 0;
+
+        window.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+        });
+
+        function animateCursor() {
+            let distX = mouseX - cursorX;
+            let distY = mouseY - cursorY;
+
+            cursorX += distX * 0.2;
+            cursorY += distY * 0.2;
+
+            cursor.style.left = cursorX + 'px';
+            cursor.style.top = cursorY + 'px';
+
+            requestAnimationFrame(animateCursor);
+        }
+        animateCursor();
+
+        // 호버 대상 갱신 반영을 위해 이벤트 위임 또는 동적 요소 대응
+        document.addEventListener('mouseover', (e) => {
+            if (e.target.matches('.nav-link, .grid-item, a, .logo, .detail-title')) {
+                document.body.classList.add('cursor-hover');
+            }
+        });
+
+        document.addEventListener('mouseout', (e) => {
+            if (e.target.matches('.nav-link, .grid-item, a, .logo, .detail-title')) {
+                document.body.classList.remove('cursor-hover');
+            }
+        });
+    </script>
 </body>
 </html>
