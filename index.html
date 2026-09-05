@@ -150,19 +150,19 @@
             display: flex;
             flex-direction: column;
             align-items: flex-end; /* 컨텐츠 전체를 우측 정렬 */
-            gap: 60px; 
+            gap: 100px; 
         }
 
         .detail-img-box {
-            width: 70%; 
-            max-width: 800px;
+            width: calc(75vw - 91.25px); /* 메인 그리드 썸네일 3개 + 사이 gap 2개와 동일한 폭 */
+            max-width: 1250px;
             background-color: #dfdfdf;
             aspect-ratio: 16 / 9; /* 상세 이미지 비율 16:9 적용 */
         }
 
         .detail-desc {
-            width: 70%; /* 이미지와 동일한 너비를 주어 좌측 정렬선을 깔끔하게 일치시킴 */
-            max-width: 800px;
+            width: calc(75vw - 91.25px); /* 이미지와 동일한 너비를 주어 좌측 정렬선을 깔끔하게 일치시킴 */
+            max-width: 1250px;
             font-size: 10pt;
             line-height: 1.6;
             color: var(--text-black);
