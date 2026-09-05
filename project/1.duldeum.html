@@ -28,7 +28,12 @@
         .detail-content { display: flex; flex-direction: column; align-items: flex-end; gap: 100px; }
         .detail-img-box { width: calc(75vw - 91.25px); max-width: 1250px; background-color: #dfdfdf; aspect-ratio: 16 / 9; overflow: hidden; }
         .detail-img-box img { width: 100%; height: 100%; object-fit: cover; display: block; }
+        
+        /* 텍스트 박스 스타일 */
         .detail-desc { width: calc(75vw - 91.25px); max-width: 1250px; font-size: 10pt; line-height: 1.6; color: var(--text-black); margin: 0; }
+        .detail-desc .kr { margin-top: 20px; display: block; }
+        .credits { margin-top: 40px; }
+        .credits span { display: block; }
 
         @media (max-width: 1024px) {
             .detail-layout { grid-template-columns: 1fr; gap: 30px; }
@@ -57,21 +62,56 @@
             <h2 class="detail-title"><a href="../index.html">Duldeum</a></h2>
             
             <div class="detail-content">
+                <!-- 1번 사진 및 설명 -->
                 <div class="detail-img-box"><img src="../image/1.duldeum/1.webp" alt="Duldeum 1"></div>
+                <div class="detail-desc">
+                    We focused on the familiar act of feeling around with your fingertips or casually setting objects down with a “toss” in the dark before going to sleep. Inspired by this everyday behavior, the product is designed so that objects can be easily placed and found again without needing to see them. By reducing unnecessary searching in the dark, it creates a more natural and effortless nighttime experience.
+                    <span class="kr">잠들기 전 어둠 속에서 손끝으로 주변을 더듬거나 물건을 ‘툭’ 내려두는 행동에 주목했습니다. 덜듬은 이 익숙한 장면에서 출발해, 보지 않아도 물건을 쉽게 놓고 다시 찾을 수 있도록 형태와 위치를 설계한 제품입니다. 이를 통해 불필요하게 주변을 더듬는 행동을 줄이고, 더 자연스러운 밤의 사용 경험을 만듭니다.</span>
+                </div>
+
+                <!-- 2번 사진 및 설명 -->
                 <div class="detail-img-box"><img src="../image/1.duldeum/2.webp" alt="Duldeum 2"></div>
+                <div class="detail-desc">
+                    Inspired by the gentle rise and fall of waves, the structure features varying heights that help keep objects from slipping off. Even when objects are casually placed down with a “toss,” they naturally settle into place and remain easy to locate and recognize in the dark.
+                    <span class="kr">부드럽게 오르내리는 물결 형태에서 영감을 받았습니다. 높낮이의 차이를 지닌 구조는 물건이 쉽게 떨어지지 않도록 하며, ‘툭’ 내려두어도 자연스럽게 자리 잡고 어둠 속에서도 쉽게 인식되도록 설계되었습니다.</span>
+                </div>
+
+                <!-- 3번 사진 (설명 없음) -->
                 <div class="detail-img-box"><img src="../image/1.duldeum/3.webp" alt="Duldeum 3"></div>
+
+                <!-- 4번 사진 및 설명 -->
                 <div class="detail-img-box"><img src="../image/1.duldeum/4.webp" alt="Duldeum 4"></div>
+                <div class="detail-desc">
+                    Conventional flat stools can cause objects to roll or fall when casually placed down. Deuldeum is designed with a wave-shaped surface that keeps belongings securely in place, inspired by the habit of dropping things beside the bed before sleep.
+                    <span class="kr">기존 평평한 스툴은 물건을 툭 내려놓으면 굴러가거나 떨어지는 문제가 있습니다. 덜듬은 잠들기 전 무심코 물건을 내려놓는 행동에 주목해, 물결 형태의 상판 안쪽에 물건이 안정적으로 자리 잡도록 디자인한 스툴입니다.</span>
+                </div>
+
+                <!-- 5번 사진 및 설명 -->
                 <div class="detail-img-box"><img src="../image/1.duldeum/5.webp" alt="Duldeum 5"></div>
+                <div class="detail-desc">
+                    A mood lamp designed to complement the stool’s wave-shaped form. Simply placing a phone or book on top naturally closes the lamp and turns it on by weight.
+                    <span class="kr">스툴의 물결 형태와 조화를 이루는 형태의 무드등입니다. 전원 버튼을 더듬어 찾을 필요 없이, 휴대폰이나 책을 올려두면 무게에 의해 자연스럽게 닫히며 자동으로 점등됩니다.</span>
+                </div>
+
+                <!-- 6번 사진 및 설명 -->
                 <div class="detail-img-box"><img src="../image/1.duldeum/6.webp" alt="Duldeum 6"></div>
+                <div class="detail-desc">
+                    A bookshelf inspired by the gentle waves of water. Books and slim objects like iPads can be easily slid into the spaces between the waves.
+                    <span class="kr">물결 무늬에서 영감을 받은 책꽂이 입니다. 물결 사이사이에 책, 아이패드 같은 슬림한 제품을 밀듯이 끼워넣을 수 있습니다.</span>
+                </div>
+
+                <!-- 7, 8, 9, 10번 사진 (설명 없음) -->
                 <div class="detail-img-box"><img src="../image/1.duldeum/7.webp" alt="Duldeum 7"></div>
                 <div class="detail-img-box"><img src="../image/1.duldeum/8.webp" alt="Duldeum 8"></div>
                 <div class="detail-img-box"><img src="../image/1.duldeum/9.webp" alt="Duldeum 9"></div>
                 <div class="detail-img-box"><img src="../image/1.duldeum/10.webp" alt="Duldeum 10"></div>
                 
-                <p class="detail-desc">
-                    둘둥(Duldeum) 프로젝트에 대한 설명 텍스트를 여기에 작성하세요.<br>
-                    줄바꿈은 &lt;br&gt; 태그를 사용하시면 깔끔하게 정돈됩니다.
-                </p>
+                <!-- 맨 하단 크레딧 정보 -->
+                <div class="detail-desc credits">
+                    <span>Designed by Jo Haon, Jin Hakyung, Song Miju, Jo Chambi, Choi Gayoun</span>
+                    <span style="margin-top: 10px;">Studioi × HiPD Winter Project, Hongik Industrail Design Student Group</span>
+                    <span style="margin-top: 10px; color: var(--text-gray);">December 2025 – February 2026</span>
+                </div>
             </div>
         </div>
     </main>
