@@ -20,6 +20,7 @@
         rel="stylesheet"
     >
 
+
     <style>
 
         /* ==================================================
@@ -28,9 +29,9 @@
 
         :root {
             --bg-color: #FCFCFC;
+            --overlay-color: rgba(252, 252, 252, 0.85);
             --text-black: #232323;
             --text-gray: #B3B3B3;
-            --overlay-color: rgba(252, 252, 252, 0.85);
         }
 
         * {
@@ -71,6 +72,7 @@
         ================================================== */
 
         @media (pointer: fine) {
+
             body,
             a,
             button,
@@ -81,6 +83,7 @@
             #info-section * {
                 cursor: none !important;
             }
+
         }
 
         .custom-cursor {
@@ -117,14 +120,12 @@
 
         /* ==================================================
            HEADER
-           Project 페이지와 동일한 상단 구조
         ================================================== */
 
         header {
             display: flex;
 
             justify-content: space-between;
-
             align-items: baseline;
 
             padding: 40px 60px;
@@ -179,7 +180,8 @@
 
             cursor: pointer;
 
-            transition: color 0.3s ease;
+            transition:
+                color 0.3s ease;
         }
 
         .nav-link.active {
@@ -192,26 +194,28 @@
 
 
         /* ==================================================
-           DETAIL TITLE
+           TITLE
+           Choi Ga Youn의 왼쪽과 정렬
+           첫 번째 사진과 상단 정렬
         ================================================== */
 
         .detail-title {
-            margin: 0;
+    margin: 0;
+    padding: 0;
 
-            padding:
-                0
-                60px
-                150px
-                60px;
+    margin-left: 60px;
 
-            font-size: 14pt;
+    font-size: 12pt;
+    font-weight: 400;
+    line-height: 1.6;
+    letter-spacing: -0.5pt;
 
-            font-weight: 400;
+    color: var(--text-black);
 
-            letter-spacing: -0.5pt;
-
-            color: var(--text-black);
-        }
+    /* 첫 번째 사진의 상단과 맞춤 */
+    position: relative;
+    top: 18px;
+}
 
         .detail-title a {
             color: inherit;
@@ -221,7 +225,7 @@
 
 
         /* ==================================================
-           CONTENT
+           PROJECT CONTENT
         ================================================== */
 
         .detail-content {
@@ -232,7 +236,16 @@
             align-items: flex-end;
 
             width: 100%;
+
+            padding-right: 60px;
+
+            margin-top: 0;
         }
+
+
+        /* ==================================================
+           IMAGE + DESCRIPTION GROUP
+        ================================================== */
 
         .item-group {
             display: flex;
@@ -258,7 +271,7 @@
         .detail-img-box {
             width: calc(75vw - 91.25px);
 
-            max-width: 1250px;
+            max-width: 1000px;
 
             background-color: #dfdfdf;
 
@@ -287,21 +300,25 @@
         .detail-desc {
             width: calc(75vw - 91.25px);
 
-            max-width: 1250px;
+            max-width: 1000px;
+            font-weight: 450;
 
             font-size: 10pt;
 
-            line-height: 1.6;
+            line-height: 1.8;
 
             color: var(--text-black);
 
             margin-top: 70px;
 
-            margin-bottom: 70px;
+            margin-bottom: 50px;
         }
 
         .detail-desc .kr {
             margin-top: 20px;
+            font-weight: 400;
+            line-height: 1.8;
+            font-size: 8pt;
 
             display: block;
 
@@ -316,7 +333,7 @@
         .credits {
             width: calc(75vw - 91.25px);
 
-            max-width: 1250px;
+            max-width: 1000px;
 
             padding-bottom: 80px;
 
@@ -347,7 +364,8 @@
             width: 100%;
             height: 100vh;
 
-            background-color: var(--overlay-color);
+            background-color:
+                var(--overlay-color);
 
             z-index: 50;
 
@@ -363,7 +381,8 @@
 
             pointer-events: none;
 
-            transition: opacity 0.4s ease;
+            transition:
+                opacity 0.4s ease;
         }
 
         #info-section.show {
@@ -385,7 +404,8 @@
         .info-row {
             display: grid;
 
-            grid-template-columns: repeat(4, 1fr);
+            grid-template-columns:
+                repeat(4, 1fr);
 
             gap: 5px;
         }
@@ -404,7 +424,8 @@
         }
 
         .info-details {
-            grid-column: 2 / span 3;
+            grid-column:
+                2 / span 3;
 
             display: flex;
 
@@ -433,11 +454,11 @@
             }
 
             .detail-title {
-                padding:
-                    0
-                    30px
-                    120px
-                    30px;
+                margin-left: 30px;
+            }
+
+            .detail-content {
+                padding-right: 30px;
             }
 
             .detail-img-box,
@@ -447,7 +468,8 @@
             }
 
             .info-row {
-                grid-template-columns: repeat(2, 1fr);
+                grid-template-columns:
+                    repeat(2, 1fr);
             }
 
             .info-details {
@@ -461,6 +483,7 @@
                     40px
                     30px;
             }
+
         }
 
 
@@ -481,21 +504,26 @@
             }
 
             .detail-title {
-                padding:
-                    0
-                    30px
-                    80px
-                    30px;
+                margin-left: 30px;
+
+                margin-bottom: 40px;
+
+                font-size: 14pt;
+            }
+
+            .detail-content {
+                padding-right: 30px;
             }
 
             .detail-img-box,
             .detail-desc,
             .credits {
-                width: calc(100vw - 60px);
+                width:
+                    calc(100vw - 60px);
             }
 
             .detail-desc {
-                margin-top: 40px;
+                margin-top: 30px;
 
                 margin-bottom: 40px;
             }
@@ -537,7 +565,6 @@
 
     <!-- ==================================================
          HEADER
-         Project 페이지와 동일한 형식
     ================================================== -->
 
     <header>
@@ -567,7 +594,6 @@
                 Project
             </span>
 
-
             <span
                 id="nav-info"
                 class="nav-link inactive"
@@ -582,7 +608,7 @@
 
 
     <!-- ==================================================
-         PROJECT TITLE
+         TITLE
     ================================================== -->
 
     <h2 class="detail-title">
@@ -601,7 +627,9 @@
     <main class="detail-content">
 
 
-        <!-- 1 -->
+        <!-- ==============================================
+             1
+        ============================================== -->
 
         <div class="item-group">
 
@@ -628,7 +656,9 @@
         </div>
 
 
-        <!-- 2 -->
+        <!-- ==============================================
+             2
+        ============================================== -->
 
         <div class="item-group">
 
@@ -655,7 +685,9 @@
         </div>
 
 
-        <!-- 3 -->
+        <!-- ==============================================
+             3
+        ============================================== -->
 
         <div class="item-group tight">
 
@@ -671,7 +703,9 @@
         </div>
 
 
-        <!-- 4 -->
+        <!-- ==============================================
+             4
+        ============================================== -->
 
         <div class="item-group">
 
@@ -698,7 +732,9 @@
         </div>
 
 
-        <!-- 5 -->
+        <!-- ==============================================
+             5
+        ============================================== -->
 
         <div class="item-group">
 
@@ -725,7 +761,9 @@
         </div>
 
 
-        <!-- 6 -->
+        <!-- ==============================================
+             6
+        ============================================== -->
 
         <div class="item-group">
 
@@ -752,7 +790,9 @@
         </div>
 
 
-        <!-- 7 -->
+        <!-- ==============================================
+             7
+        ============================================== -->
 
         <div class="item-group tight">
 
@@ -768,7 +808,9 @@
         </div>
 
 
-        <!-- 8 -->
+        <!-- ==============================================
+             8
+        ============================================== -->
 
         <div class="item-group tight">
 
@@ -784,7 +826,9 @@
         </div>
 
 
-        <!-- 9 -->
+        <!-- ==============================================
+             9
+        ============================================== -->
 
         <div class="item-group tight">
 
@@ -800,7 +844,9 @@
         </div>
 
 
-        <!-- 10 -->
+        <!-- ==============================================
+             10
+        ============================================== -->
 
         <div class="item-group">
 
@@ -816,9 +862,9 @@
         </div>
 
 
-        <!-- ==================================================
+        <!-- ==============================================
              CREDITS
-        ================================================== -->
+        ============================================== -->
 
         <div class="credits">
 
@@ -1074,7 +1120,7 @@
     <script>
 
         /* ==================================================
-           PROJECT BUTTON
+           GO TO PROJECT
         ================================================== */
 
         function goToProject() {
@@ -1149,12 +1195,12 @@
         }
 
 
-        document
-            .getElementById("info-section")
-            .addEventListener(
-                "click",
-                closeInfo
-            );
+        document.getElementById(
+            "info-section"
+        ).addEventListener(
+            "click",
+            closeInfo
+        );
 
 
         /* ==================================================
@@ -1162,7 +1208,9 @@
         ================================================== */
 
         const cursor =
-            document.getElementById("cursor");
+            document.getElementById(
+                "cursor"
+            );
 
 
         let mouseX = 0;
@@ -1177,6 +1225,7 @@
             function(e) {
 
                 mouseX = e.clientX;
+
                 mouseY = e.clientY;
 
             }
