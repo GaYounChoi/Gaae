@@ -22,10 +22,6 @@
 
     <style>
 
-        /* =========================
-           BASIC
-        ========================= */
-
         :root {
             --bg-color: #FCFCFC;
             --overlay-color: rgba(252, 252, 252, 0.85);
@@ -37,8 +33,14 @@
             box-sizing: border-box;
         }
 
+
+        /* =========================
+           BODY
+        ========================= */
+
         body {
             background-color: var(--bg-color);
+
             margin: 0;
             padding: 40px 60px;
 
@@ -66,7 +68,6 @@
         ========================= */
 
         @media (pointer: fine) {
-
             body,
             a,
             button,
@@ -76,7 +77,6 @@
             #info-section * {
                 cursor: none !important;
             }
-
         }
 
         .custom-cursor {
@@ -140,6 +140,7 @@
 
         .logo a {
             color: inherit;
+
             text-decoration: none;
         }
 
@@ -194,6 +195,12 @@
             text-decoration: none;
 
             transition: opacity 0.3s ease;
+
+            position: relative;
+
+            z-index: 10;
+
+            cursor: pointer;
         }
 
         .grid-item img {
@@ -203,6 +210,8 @@
             height: 100%;
 
             object-fit: cover;
+
+            pointer-events: none;
         }
 
         .grid-item:hover {
@@ -211,7 +220,7 @@
 
 
         /* =========================
-           INFORMATION OVERLAY
+           INFORMATION
         ========================= */
 
         #info-section {
@@ -232,6 +241,8 @@
                 60px
                 60px
                 60px;
+
+            box-sizing: border-box;
 
             overflow-y: auto;
 
@@ -324,7 +335,6 @@
                     40px
                     30px;
             }
-
         }
 
 
@@ -362,7 +372,6 @@
 
                 gap: 20px;
             }
-
         }
 
     </style>
@@ -370,6 +379,7 @@
 
 
 <body>
+
 
     <!-- =========================
          CUSTOM CURSOR
@@ -421,7 +431,6 @@
                 Project
             </span>
 
-
             <span
                 id="nav-info"
                 class="nav-link inactive"
@@ -436,7 +445,7 @@
 
 
     <!-- =========================
-         PROJECTS
+         PROJECT
     ========================= -->
 
     <main>
@@ -444,15 +453,16 @@
         <div class="grid-container">
 
 
-            <!-- DULDEUM -->
+            <!-- DULDEUM PROJECT -->
 
             <a
                 href="./project/1.duldeum.html"
                 class="grid-item"
+                id="duldeum-project"
             >
 
                 <img
-                    src="./thumbnail/duldeum.png"
+                    src="./thumnail/duldeum.png"
                     alt="Duldeum Thumbnail"
                 >
 
@@ -549,7 +559,6 @@
 
                     </div>
 
-
                     <div class="info-item">
 
                         <p>
@@ -562,7 +571,6 @@
 
                     </div>
 
-
                     <div class="info-item">
 
                         <p>
@@ -574,7 +582,6 @@
                         </p>
 
                     </div>
-
 
                     <div class="info-item">
 
@@ -615,7 +622,6 @@
 
                     </div>
 
-
                     <div class="info-item">
 
                         <p>
@@ -628,7 +634,6 @@
 
                     </div>
 
-
                     <div class="info-item">
 
                         <p>
@@ -640,7 +645,6 @@
                         </p>
 
                     </div>
-
 
                     <div class="info-item">
 
@@ -715,7 +719,6 @@
             document
                 .getElementById('info-section')
                 .classList.add('show');
-
         }
 
 
@@ -736,18 +739,40 @@
             document
                 .getElementById('info-section')
                 .classList.remove('show');
-
         }
 
 
         /* =========================
            CLOSE INFORMATION
-           WHEN CLICKING OVERLAY
         ========================= */
 
         document
             .getElementById('info-section')
-            .addEventListener('click', closeInfo);
+            .addEventListener(
+                'click',
+                closeInfo
+            );
+
+
+        /* =========================
+           DULDEUM PROJECT LINK
+        ========================= */
+
+        const duldeumProject =
+            document.getElementById('duldeum-project');
+
+
+        duldeumProject.addEventListener(
+            'click',
+            function(event) {
+
+                event.preventDefault();
+
+                window.location.href =
+                    './project/1.duldeum.html';
+
+            }
+        );
 
 
         /* =========================
@@ -766,7 +791,7 @@
 
         window.addEventListener(
             'mousemove',
-            (e) => {
+            function(e) {
 
                 mouseX = e.clientX;
                 mouseY = e.clientY;
@@ -794,7 +819,6 @@
             requestAnimationFrame(
                 animateCursor
             );
-
         }
 
 
@@ -807,7 +831,7 @@
 
         document.addEventListener(
             'mouseover',
-            (e) => {
+            function(e) {
 
                 if (
                     e.target.closest(
@@ -827,7 +851,7 @@
 
         document.addEventListener(
             'mouseout',
-            (e) => {
+            function(e) {
 
                 if (
                     e.target.closest(
