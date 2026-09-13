@@ -36,6 +36,28 @@
             margin: 0;
             padding: 0;
             width: 100%;
+            min-height: 100%;
+        }
+
+        body {
+            background-color: #FCFCFC;
+
+            font-family:
+                'Inter',
+                -apple-system,
+                BlinkMacSystemFont,
+                "Segoe UI",
+                sans-serif;
+
+            color: #232323;
+
+            -webkit-font-smoothing: antialiased;
+
+            letter-spacing: -0.5pt;
+        }
+
+        body.lock-scroll {
+            overflow: hidden;
         }
 
 
@@ -44,6 +66,7 @@
         ================================================== */
 
         #intro-screen {
+
             position: fixed;
 
             top: 0;
@@ -66,7 +89,9 @@
             overflow: hidden;
         }
 
+
         #intro-title {
+
             font-family:
                 'Inter',
                 -apple-system,
@@ -88,8 +113,12 @@
             z-index: 10;
         }
 
+
         #intro-title sup {
-            font-family: 'Noto Serif Tamil', serif;
+
+            font-family:
+                'Noto Serif Tamil',
+                serif;
 
             font-style: italic;
 
@@ -102,12 +131,17 @@
             letter-spacing: 0;
         }
 
-        /* Typing cursor */
+
+        /* ==================================================
+           TYPING CURSOR
+        ================================================== */
 
         #cursor-bar {
+
             display: inline-block;
 
             width: 1.5px;
+
             height: 0.65em;
 
             background-color: #ffffff;
@@ -116,8 +150,10 @@
 
             vertical-align: middle;
 
-            animation: blink 0.7s step-end infinite;
+            animation:
+                blink 0.7s step-end infinite;
         }
+
 
         @keyframes blink {
 
@@ -133,9 +169,12 @@
         }
 
 
-        /* Intro transition */
+        /* ==================================================
+           INTRO TRANSITION
+        ================================================== */
 
         #transition-block {
+
             position: fixed;
 
             bottom: -100vh;
@@ -143,7 +182,6 @@
             left: 0;
 
             width: 100vw;
-
             height: 100vh;
 
             background-color: #FCFCFC;
@@ -190,13 +228,13 @@
 
             pointer-events: none;
 
-            transition: opacity 0.2s ease;
+            transition:
+                opacity 0.2s ease;
         }
 
 
-        /* Project page visible */
-
         body.project-visible #project-page {
+
             opacity: 1;
 
             pointer-events: auto;
@@ -205,17 +243,21 @@
 
         /* ==================================================
            CUSTOM CURSOR
+           핵심 수정
         ================================================== */
 
         @media (pointer: fine) {
 
-            #project-page,
-            #project-page a,
-            #project-page button,
-            #project-page .grid-item,
-            #project-page .nav-link,
-            #project-page #info-section,
-            #project-page #info-section * {
+            html,
+            body,
+            a,
+            button,
+            .grid-item,
+            .nav-link,
+            .logo,
+            #info-section,
+            #info-section * {
+
                 cursor: none !important;
             }
 
@@ -232,27 +274,44 @@
             width: 15px;
             height: 15px;
 
-            background-color: #000000;
+            /*
+                흰색 + difference
+                → 검은 배경에서는 흰색
+                → 흰 배경에서는 검은색
+                → 글자 위에서도 해당 부분이 반전됨
+            */
+            background-color: #ffffff;
 
             border-radius: 50%;
 
             pointer-events: none;
 
-            transform: translate(-50%, -50%);
+            transform:
+                translate(-50%, -50%);
 
-            z-index: 9999;
+            /*
+                Intro(10000)와 transition(10001)보다
+                위에 표시
+            */
+            z-index: 20000;
+
+            mix-blend-mode: difference;
+
+            /*
+                intro에서도 항상 보이도록 opacity 제거
+            */
+            opacity: 1;
 
             transition:
                 width 0.3s ease,
                 height 0.3s ease,
                 opacity 0.3s ease;
 
-            opacity: 0;
-        }
-
-
-        body.project-visible .custom-cursor {
-            opacity: 1;
+            will-change:
+                left,
+                top,
+                width,
+                height;
         }
 
 
@@ -262,7 +321,7 @@
 
             height: 18px;
 
-            opacity: 0.7;
+            opacity: 0.8;
         }
 
 
@@ -303,6 +362,24 @@
             color: inherit;
 
             text-decoration: none;
+        }
+
+
+        .logo sup {
+
+            font-family:
+                'Noto Serif Tamil',
+                serif;
+
+            font-style: italic;
+
+            font-size: 0.7em;
+
+            margin-left: 2px;
+
+            font-weight: 400;
+
+            letter-spacing: 0;
         }
 
 
@@ -649,23 +726,10 @@
 
                     Choi Ga Youn
 
-                    <sup
-                        style="
-                            font-family:
-                            'Noto Serif Tamil', serif;
+                    <sup>
 
-                            font-style: italic;
-
-                            font-size: 0.7em;
-
-                            margin-left: 2px;
-
-                            font-weight: 400;
-
-                            letter-spacing: 0;
-                        "
-                    >
                         1) 2) 3)
+
                     </sup>
 
                 </a>
@@ -1012,8 +1076,6 @@
                 let index = 0;
 
 
-                /* Start typing */
-
                 setTimeout(
                     function () {
 
@@ -1037,8 +1099,6 @@
                                         );
 
 
-                                        /* Hide typing cursor */
-
                                         setTimeout(
                                             function () {
 
@@ -1050,8 +1110,6 @@
                                         );
 
 
-                                        /* Start transition */
-
                                         setTimeout(
                                             function () {
 
@@ -1059,20 +1117,10 @@
                                                     "translateY(-100vh)";
 
 
-                                                /*
-                                                   Show project page
-                                                   behind transition
-                                                */
-
                                                 document.body.classList.add(
                                                     "project-visible"
                                                 );
 
-
-                                                /*
-                                                   Remove intro
-                                                   after animation
-                                                */
 
                                                 setTimeout(
                                                     function () {
@@ -1200,7 +1248,6 @@
             function (e) {
 
                 mouseX = e.clientX;
-
                 mouseY = e.clientY;
 
             }
@@ -1212,14 +1259,12 @@
             cursorX +=
                 (mouseX - cursorX) * 0.2;
 
-
             cursorY +=
                 (mouseY - cursorY) * 0.2;
 
 
             cursor.style.left =
                 cursorX + "px";
-
 
             cursor.style.top =
                 cursorY + "px";
