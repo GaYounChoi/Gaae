@@ -3,153 +3,1283 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ga Youn Choi - Portfolio</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Tamil:ital,wght@1,400&display=swap" rel="stylesheet">
-    <style>
-        * { cursor: none !important; }
 
+    <title>Ga Youn Choi - Portfolio</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap"
+        rel="stylesheet"
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Noto+Serif+Tamil:ital,wght@1,400&display=swap"
+        rel="stylesheet"
+    >
+
+
+    <style>
+
+        /* ==================================================
+           GLOBAL
+        ================================================== */
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html,
         body {
-            background-color: #000000;
             margin: 0;
             padding: 0;
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            width: 100%;
+        }
+
+
+        /* ==================================================
+           INTRO SCREEN
+        ================================================== */
+
+        #intro-screen {
+            position: fixed;
+
+            top: 0;
+            left: 0;
+
+            width: 100vw;
+            height: 100vh;
+
+            background-color: #000000;
+
             color: #ffffff;
+
             display: flex;
+
             justify-content: center;
             align-items: center;
-            height: 100vh;
+
+            z-index: 10000;
+
             overflow: hidden;
         }
 
-        /* Custom cursor — mix-blend-mode: difference inverts color automatically */
-        #custom-cursor {
-            position: fixed;
-            top: 0; left: 0;
-            width: 20px; height: 20px;
-            background-color: #ffffff;
-            border-radius: 50%;
-            pointer-events: none;
-            transform: translate(-50%, -50%);
-            z-index: 9999;
-            mix-blend-mode: difference; /* Magic: inverts based on background */
-            transition: width 0.25s ease, height 0.25s ease;
-        }
+        #intro-title {
+            font-family:
+                'Inter',
+                -apple-system,
+                BlinkMacSystemFont,
+                sans-serif;
 
-        #main-title {
             font-size: 2.5vw;
+
             font-weight: 400;
-            letter-spacing: -0.05em; /* Tighter letter spacing */
+
+            letter-spacing: -0.05em;
+
             margin: 0;
+
             text-align: center;
+
             position: relative;
+
             z-index: 10;
         }
 
-        sup {
-            font-family: 'Noto Serif Tamil', serif; 
-            font-style: italic; 
-            font-size: 0.7em; 
-            margin-left: 6px; 
-            font-weight: 400; 
+        #intro-title sup {
+            font-family: 'Noto Serif Tamil', serif;
+
+            font-style: italic;
+
+            font-size: 0.7em;
+
+            margin-left: 6px;
+
+            font-weight: 400;
+
             letter-spacing: 0;
         }
 
-        /* Blinking cursor */
+        /* Typing cursor */
+
         #cursor-bar {
             display: inline-block;
+
             width: 1.5px;
             height: 0.65em;
+
             background-color: #ffffff;
+
             margin-left: 2px;
+
             vertical-align: middle;
+
             animation: blink 0.7s step-end infinite;
         }
 
         @keyframes blink {
-            0%, 100% { opacity: 1; }
-            50%       { opacity: 0; }
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0;
+            }
+
         }
 
-        /* Slide up transition block */
+
+        /* Intro transition */
+
         #transition-block {
             position: fixed;
+
             bottom: -100vh;
+
             left: 0;
+
             width: 100vw;
+
             height: 100vh;
+
             background-color: #FCFCFC;
-            z-index: 20;
-            transition: transform 1s cubic-bezier(0.645, 0.045, 0.355, 1);
+
+            z-index: 10001;
+
+            transition:
+                transform 1s
+                cubic-bezier(
+                    0.645,
+                    0.045,
+                    0.355,
+                    1
+                );
         }
+
+
+        /* ==================================================
+           PROJECT PAGE
+        ================================================== */
+
+        #project-page {
+
+            min-height: 100vh;
+
+            background-color: #FCFCFC;
+
+            padding: 40px 60px;
+
+            font-family:
+                'Inter',
+                -apple-system,
+                BlinkMacSystemFont,
+                "Segoe UI",
+                sans-serif;
+
+            color: #232323;
+
+            -webkit-font-smoothing: antialiased;
+
+            letter-spacing: -0.5pt;
+
+            opacity: 0;
+
+            pointer-events: none;
+
+            transition: opacity 0.2s ease;
+        }
+
+
+        /* Project page visible */
+
+        body.project-visible #project-page {
+            opacity: 1;
+
+            pointer-events: auto;
+        }
+
+
+        /* ==================================================
+           CUSTOM CURSOR
+        ================================================== */
+
+        @media (pointer: fine) {
+
+            #project-page,
+            #project-page a,
+            #project-page button,
+            #project-page .grid-item,
+            #project-page .nav-link,
+            #project-page #info-section,
+            #project-page #info-section * {
+                cursor: none !important;
+            }
+
+        }
+
+
+        .custom-cursor {
+
+            position: fixed;
+
+            top: 0;
+            left: 0;
+
+            width: 15px;
+            height: 15px;
+
+            background-color: #000000;
+
+            border-radius: 50%;
+
+            pointer-events: none;
+
+            transform: translate(-50%, -50%);
+
+            z-index: 9999;
+
+            transition:
+                width 0.3s ease,
+                height 0.3s ease,
+                opacity 0.3s ease;
+
+            opacity: 0;
+        }
+
+
+        body.project-visible .custom-cursor {
+            opacity: 1;
+        }
+
+
+        body.cursor-hover .custom-cursor {
+
+            width: 18px;
+
+            height: 18px;
+
+            opacity: 0.7;
+        }
+
+
+        /* ==================================================
+           HEADER
+        ================================================== */
+
+        header {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: baseline;
+
+            margin-bottom: 150px;
+
+            position: relative;
+
+            z-index: 100;
+        }
+
+
+        .logo {
+
+            font-size: 14pt;
+
+            letter-spacing: -1pt;
+
+            font-weight: 400;
+
+            margin: 0;
+        }
+
+
+        .logo a {
+
+            color: inherit;
+
+            text-decoration: none;
+        }
+
+
+        nav {
+
+            display: flex;
+
+            gap: 30px;
+        }
+
+
+        .nav-link {
+
+            font-size: 12px;
+
+            font-weight: 400;
+
+            cursor: pointer;
+
+            transition:
+                color 0.3s ease;
+        }
+
+
+        .nav-link.active {
+
+            color: #232323;
+        }
+
+
+        .nav-link.inactive {
+
+            color: #B3B3B3;
+        }
+
+
+        /* ==================================================
+           PROJECT GRID
+        ================================================== */
+
+        .grid-container {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(4, 1fr);
+
+            gap: 5px;
+        }
+
+
+        .grid-item {
+
+            display: block;
+
+            width: 100%;
+
+            aspect-ratio: 4 / 5;
+
+            background-color: #dfdfdf;
+
+            overflow: hidden;
+
+            text-decoration: none;
+
+            transition:
+                opacity 0.3s ease;
+        }
+
+
+        .grid-item img {
+
+            display: block;
+
+            width: 100%;
+            height: 100%;
+
+            object-fit: cover;
+
+            pointer-events: none;
+        }
+
+
+        .grid-item:hover {
+
+            opacity: 0.8;
+        }
+
+
+        /* ==================================================
+           INFORMATION OVERLAY
+        ================================================== */
+
+        #info-section {
+
+            position: fixed;
+
+            top: 0;
+            left: 0;
+
+            width: 100%;
+            height: 100vh;
+
+            background-color:
+                rgba(252, 252, 252, 0.85);
+
+            z-index: 50;
+
+            padding:
+                230px
+                60px
+                60px
+                60px;
+
+            overflow-y: auto;
+
+            opacity: 0;
+
+            pointer-events: none;
+
+            transition:
+                opacity 0.4s ease;
+        }
+
+
+        #info-section.show {
+
+            opacity: 1;
+
+            pointer-events: auto;
+        }
+
+
+        .info-container {
+
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 60px;
+
+            width: 100%;
+        }
+
+
+        .info-row {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(4, 1fr);
+
+            gap: 5px;
+        }
+
+
+        .info-category,
+        .info-item p {
+
+            font-size: 10pt !important;
+
+            line-height: 1.5;
+        }
+
+
+        .info-category {
+
+            grid-column: 1;
+
+            font-weight: 400;
+        }
+
+
+        .info-details {
+
+            grid-column:
+                2 / span 3;
+
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 24px;
+        }
+
+
+        .info-item p {
+
+            margin: 0;
+        }
+
+
+        .info-item .date {
+
+            color: #A0A0A0;
+        }
+
+
+        /* ==================================================
+           TABLET
+        ================================================== */
+
+        @media (max-width: 1024px) {
+
+            .grid-container,
+            .info-row {
+
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+
+
+            .info-details {
+
+                grid-column: 2;
+            }
+
+
+            #project-page {
+
+                padding: 30px;
+            }
+
+
+            #info-section {
+
+                padding:
+                    180px
+                    30px
+                    40px
+                    30px;
+            }
+
+        }
+
+
+        /* ==================================================
+           MOBILE
+        ================================================== */
 
         @media (max-width: 600px) {
-            #main-title { font-size: 2rem; }
+
+            #intro-title {
+
+                font-size: 2rem;
+            }
+
+
+            header {
+
+                flex-direction: column;
+
+                gap: 20px;
+
+                align-items: flex-start;
+
+                margin-bottom: 80px;
+            }
+
+
+            .grid-container,
+            .info-row {
+
+                grid-template-columns: 1fr;
+            }
+
+
+            .info-category {
+
+                grid-column: 1;
+
+                margin-bottom: 16px;
+
+                font-weight: 600;
+            }
+
+
+            .info-details {
+
+                grid-column: 1;
+
+                gap: 20px;
+            }
+
         }
+
     </style>
 </head>
+
+
 <body>
-    <h1 id="main-title">
-        Choi Ga Youn<sup><span id="typing-text"></span><span id="cursor-bar"></span></sup>
-    </h1>
-    
-    <div id="transition-block"></div>
-    <div id="custom-cursor"></div>
+
+
+    <!-- ==================================================
+         INTRO
+    ================================================== -->
+
+    <section id="intro-screen">
+
+        <h1 id="intro-title">
+
+            Choi Ga Youn
+
+            <sup>
+
+                <span id="typing-text"></span>
+
+                <span id="cursor-bar"></span>
+
+            </sup>
+
+        </h1>
+
+
+        <div id="transition-block"></div>
+
+    </section>
+
+
+    <!-- ==================================================
+         CUSTOM CURSOR
+    ================================================== -->
+
+    <div
+        class="custom-cursor"
+        id="cursor"
+    ></div>
+
+
+    <!-- ==================================================
+         PROJECT PAGE
+    ================================================== -->
+
+    <div id="project-page">
+
+
+        <!-- HEADER -->
+
+        <header>
+
+            <h1 class="logo">
+
+                <a href="./index.html">
+
+                    Choi Ga Youn
+
+                    <sup
+                        style="
+                            font-family:
+                            'Noto Serif Tamil', serif;
+
+                            font-style: italic;
+
+                            font-size: 0.7em;
+
+                            margin-left: 2px;
+
+                            font-weight: 400;
+
+                            letter-spacing: 0;
+                        "
+                    >
+                        1) 2) 3)
+                    </sup>
+
+                </a>
+
+            </h1>
+
+
+            <nav>
+
+                <span
+                    id="nav-project"
+                    class="nav-link active"
+                    onclick="closeInfo()"
+                >
+                    Project
+                </span>
+
+
+                <span
+                    id="nav-info"
+                    class="nav-link inactive"
+                    onclick="openInfo()"
+                >
+                    Information
+                </span>
+
+            </nav>
+
+        </header>
+
+
+        <!-- PROJECT GRID -->
+
+        <main>
+
+            <div class="grid-container">
+
+
+                <!-- DULDEUM -->
+
+                <a
+                    href="./project/1.duldeum.html"
+                    class="grid-item"
+                >
+
+                    <img
+                        src="./thumbnail/duldeum.png"
+                        alt="Duldeum Thumbnail"
+                    >
+
+                </a>
+
+
+            </div>
+
+        </main>
+
+
+        <!-- INFORMATION -->
+
+        <aside id="info-section">
+
+            <div class="info-container">
+
+
+                <!-- PROFILE -->
+
+                <div class="info-row">
+
+                    <div class="info-category">
+                        Profile
+                    </div>
+
+                    <div class="info-details">
+
+                        <div class="info-item">
+
+                            <p>
+                                rkdbs0507@g.hongik.ac.kr
+                            </p>
+
+                            <p>
+                                @0.315g
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- EDUCATION -->
+
+                <div class="info-row">
+
+                    <div class="info-category">
+                        Education
+                    </div>
+
+                    <div class="info-details">
+
+                        <div class="info-item">
+
+                            <p>
+                                Hongik University,
+                                Industrial Design
+                            </p>
+
+                            <p class="date">
+                                2024 - present
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- EXPERIENCE -->
+
+                <div class="info-row">
+
+                    <div class="info-category">
+                        Experience
+                    </div>
+
+                    <div class="info-details">
+
+
+                        <div class="info-item">
+
+                            <p>
+                                Vice President,
+                                Industrial Design Product
+                                Design Club, Hongik University
+                            </p>
+
+                            <p class="date">
+                                2026
+                            </p>
+
+                        </div>
+
+
+                        <div class="info-item">
+
+                            <p>
+                                Undergraduate Researcher,
+                                HIDE LAB, Department of
+                                Design Engineering,
+                                Hongik University
+                            </p>
+
+                            <p class="date">
+                                2026
+                            </p>
+
+                        </div>
+
+
+                        <div class="info-item">
+
+                            <p>
+                                Studio I × HiPD Joint
+                                Winter Project
+                            </p>
+
+                            <p class="date">
+                                2026
+                            </p>
+
+                        </div>
+
+
+                        <div class="info-item">
+
+                            <p>
+                                Torriden Industry-Academia
+                                Collaboration Project
+                            </p>
+
+                            <p class="date">
+                                2025
+                            </p>
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+
+                <!-- EXHIBITION -->
+
+                <div class="info-row">
+
+                    <div class="info-category">
+                        Exhibition
+                    </div>
+
+                    <div class="info-details">
+
+
+                        <div class="info-item">
+
+                            <p>
+                                Hongik Industrial Design
+                                Summer Show
+                            </p>
+
+                            <p class="date">
+                                2026
+                            </p>
+
+                        </div>
+
+
+                        <div class="info-item">
+
+                            <p>
+                                Hongik × Kookmin AI
+                                Collective Exhibition
+                                &lt;Nod to Nod&gt;
+                            </p>
+
+                            <p class="date">
+                                2026
+                            </p>
+
+                        </div>
+
+
+                        <div class="info-item">
+
+                            <p>
+                                Hongik University ×
+                                Korea National University
+                                of Arts Joint Exhibition
+                                &lt;Platypus&gt;
+                            </p>
+
+                            <p class="date">
+                                2025
+                            </p>
+
+                        </div>
+
+
+                        <div class="info-item">
+
+                            <p>
+                                Hongik Industrial Design
+                                Summer Show
+                            </p>
+
+                            <p class="date">
+                                2024
+                            </p>
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+
+                <!-- AWARD -->
+
+                <div class="info-row">
+
+                    <div class="info-category">
+                        Award
+                    </div>
+
+                    <div class="info-details">
+
+                        <div class="info-item">
+
+                            <p>
+                                Award Title Placeholder
+                            </p>
+
+                            <p class="date">
+                                2026
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </aside>
+
+
+    </div>
+
+
+    <!-- ==================================================
+         JAVASCRIPT
+    ================================================== -->
 
     <script>
-        // Smooth lagging cursor tracking
-        const cursor = document.getElementById('custom-cursor');
-        let mouseX = 0, mouseY = 0, curX = 0, curY = 0;
 
-        window.addEventListener('mousemove', (e) => {
-            mouseX = e.clientX;
-            mouseY = e.clientY;
-        });
 
-        (function animateCursor() {
-            curX += (mouseX - curX) * 0.15;
-            curY += (mouseY - curY) * 0.15;
-            cursor.style.left = curX + 'px';
-            cursor.style.top  = curY + 'px';
-            requestAnimationFrame(animateCursor);
-        })();
+        /* ==================================================
+           INTRO TYPING
+        ================================================== */
+
+        document.addEventListener(
+            "DOMContentLoaded",
+            function () {
+
+                const typingElement =
+                    document.getElementById(
+                        "typing-text"
+                    );
+
+                const cursorBar =
+                    document.getElementById(
+                        "cursor-bar"
+                    );
+
+                const introScreen =
+                    document.getElementById(
+                        "intro-screen"
+                    );
+
+                const transitionBlock =
+                    document.getElementById(
+                        "transition-block"
+                    );
+
+                const targetText =
+                    "1) 2) 3)";
+
+                let index = 0;
+
+
+                /* Start typing */
+
+                setTimeout(
+                    function () {
+
+                        const typingInterval =
+                            setInterval(
+                                function () {
+
+                                    typingElement.textContent +=
+                                        targetText[index];
+
+                                    index++;
+
+
+                                    if (
+                                        index ===
+                                        targetText.length
+                                    ) {
+
+                                        clearInterval(
+                                            typingInterval
+                                        );
+
+
+                                        /* Hide typing cursor */
+
+                                        setTimeout(
+                                            function () {
+
+                                                cursorBar.style.display =
+                                                    "none";
+
+                                            },
+                                            800
+                                        );
+
+
+                                        /* Start transition */
+
+                                        setTimeout(
+                                            function () {
+
+                                                transitionBlock.style.transform =
+                                                    "translateY(-100vh)";
+
+
+                                                /*
+                                                   Show project page
+                                                   behind transition
+                                                */
+
+                                                document.body.classList.add(
+                                                    "project-visible"
+                                                );
+
+
+                                                /*
+                                                   Remove intro
+                                                   after animation
+                                                */
+
+                                                setTimeout(
+                                                    function () {
+
+                                                        introScreen.style.display =
+                                                            "none";
+
+                                                    },
+                                                    1000
+                                                );
+
+                                            },
+                                            1000
+                                        );
+
+                                    }
+
+                                },
+                                180
+                            );
+
+                    },
+                    600
+                );
+
+            }
+        );
+
+
+        /* ==================================================
+           INFORMATION OPEN
+        ================================================== */
+
+        function openInfo() {
+
+            document.getElementById(
+                "nav-info"
+            ).className =
+                "nav-link active";
+
+
+            document.getElementById(
+                "nav-project"
+            ).className =
+                "nav-link inactive";
+
+
+            document.body.classList.add(
+                "lock-scroll"
+            );
+
+
+            document.getElementById(
+                "info-section"
+            ).classList.add(
+                "show"
+            );
+
+        }
+
+
+        /* ==================================================
+           INFORMATION CLOSE
+        ================================================== */
+
+        function closeInfo() {
+
+            document.getElementById(
+                "nav-project"
+            ).className =
+                "nav-link active";
+
+
+            document.getElementById(
+                "nav-info"
+            ).className =
+                "nav-link inactive";
+
+
+            document.body.classList.remove(
+                "lock-scroll"
+            );
+
+
+            document.getElementById(
+                "info-section"
+            ).classList.remove(
+                "show"
+            );
+
+        }
+
+
+        /* ==================================================
+           INFORMATION OVERLAY CLOSE
+        ================================================== */
+
+        document.getElementById(
+            "info-section"
+        ).addEventListener(
+            "click",
+            closeInfo
+        );
+
+
+        /* ==================================================
+           CUSTOM CURSOR
+        ================================================== */
+
+        const cursor =
+            document.getElementById(
+                "cursor"
+            );
+
+
+        let mouseX = 0;
+        let mouseY = 0;
+
+        let cursorX = 0;
+        let cursorY = 0;
+
+
+        window.addEventListener(
+            "mousemove",
+            function (e) {
+
+                mouseX = e.clientX;
+
+                mouseY = e.clientY;
+
+            }
+        );
+
+
+        function animateCursor() {
+
+            cursorX +=
+                (mouseX - cursorX) * 0.2;
+
+
+            cursorY +=
+                (mouseY - cursorY) * 0.2;
+
+
+            cursor.style.left =
+                cursorX + "px";
+
+
+            cursor.style.top =
+                cursorY + "px";
+
+
+            requestAnimationFrame(
+                animateCursor
+            );
+
+        }
+
+
+        animateCursor();
+
+
+        /* ==================================================
+           CURSOR HOVER
+        ================================================== */
+
+        document.addEventListener(
+            "mouseover",
+            function (e) {
+
+                if (
+                    e.target.closest(
+                        ".nav-link, .grid-item, a, .logo"
+                    )
+                ) {
+
+                    document.body.classList.add(
+                        "cursor-hover"
+                    );
+
+                }
+
+            }
+        );
+
+
+        document.addEventListener(
+            "mouseout",
+            function (e) {
+
+                if (
+                    e.target.closest(
+                        ".nav-link, .grid-item, a, .logo"
+                    )
+                ) {
+
+                    document.body.classList.remove(
+                        "cursor-hover"
+                    );
+
+                }
+
+            }
+        );
+
+
     </script>
 
-    <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            const typingElement = document.getElementById('typing-text');
-            const cursorBar    = document.getElementById('cursor-bar');
-            const targetText   = "1) 2) 3)";
-            let index = 0;
-
-            // Start typing after 500ms: cursor blinks first, then each char types
-            setTimeout(() => {
-                const typingInterval = setInterval(() => {
-                    typingElement.textContent += targetText[index];
-                    index++;
-
-                    if (index === targetText.length) {
-                        clearInterval(typingInterval);
-
-                        // Keep cursor blinking a beat longer, then hide it
-                        setTimeout(() => {
-                            cursorBar.style.display = 'none';
-                        }, 800);
-
-                        // 1 second after typing finishes, slide-up transition
-                        setTimeout(() => {
-                            const block = document.getElementById('transition-block');
-                            block.style.transform = 'translateY(-100vh)';
-
-                            // Navigate once slide finishes
-                            setTimeout(() => {
-                                window.location.href = 'project.html';
-                            }, 1000);
-                        }, 1000);
-                    }
-                }, 180); // Slightly slower for rhythm
-            }, 600); // Wait before typing starts — cursor blinks alone first
-        });
-    </script>
 </body>
 </html>
